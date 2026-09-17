@@ -1,494 +1,1077 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta - Remodelaciones Alto Nivel</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Propuesta Digital - Núcleo Funcional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
+        /* RESET OBLIGATORIO */
         *{box-sizing:border-box;margin:0;padding:0}
-        :root{
-            --bg-0:#F2F3F5;
-            --bg-1:#E9EBEF;
-            --bg-2:#FFFFFF;
-            --bg-deep:#E2E4E9;
-            /* Custom Colors for Remodelaciones Alto Nivel based on 'verde botella oscuro' and 'dorado/champagne' */
-            --cyan:#0C6B4B; /* Darker Bottle Green for primary accent */
-            --blue:#095B3E; /* Even deeper green */
-            --violet:#B4912A; /* Dorado/Champagne */
-            --magenta:#9D7F24; /* Deeper Dorado */
-            --grad-brand:linear-gradient(100deg, var(--cyan) 0%, var(--blue) 38%, var(--violet) 72%, var(--magenta) 100%);
-            --bg-glow-a:rgba(12,107,75,.09); /* Green with transparency */
-            --bg-glow-b:rgba(180,145,42,.09); /* Dorado with transparency */
 
-            --bg-wash:linear-gradient(135deg,rgba(47,168,214,.06) 0%,rgba(47,111,224,.05) 32%,rgba(107,79,203,.05) 66%,rgba(154,63,201,.07) 100%);
-            --text-hi:#14161B;
-            --text-mid:#3D4451;
-            --text-lo:#6B7280;
-            --text-faint:#9CA3AF;
-            --card-border:rgba(20,25,35,.10);
-            --dot-confidential:#C98A00;
-            --radius:14px;
-            --font-display:'Playfair Display',serif;
-            --font-body:'Poppins',sans-serif;
-            --font-label:'Montserrat',sans-serif;
+        :root {
+            /* Colores base (siempre claros) */
+            --bg-0: #F2F3F5;
+            --bg-1: #E9EBEF;
+            --bg-2: #FFFFFF;
+            --bg-deep: #E2E4E9;
+            --text-hi: #14161B;
+            --text-mid: #3D4451;
+            --text-lo: #6B7280;
+            --text-faint: #9CA3AF;
+            --card-border: rgba(20,25,35,.10);
+            --radius: 14px;
+
+            /* Colores de acento personalizados (Rojo-Naranja y Negro Carbón del cliente) */
+            --rojo-naranja-energetico: #FF4500; /* OrangeRed */
+            --negro-carbon: #2A2A2A; /* Charcoal Black */
+
+            --cyan: #FF6F00; /* Lighter energetic orange */
+            --blue: #D84315; /* A strong red-orange */
+            --violet: #757575; /* A warm grey, close to charcoal */
+            --magenta: #2A2A2A; /* Charcoal black for impact */
+            
+            --grad-brand: linear-gradient(100deg, var(--cyan) 0%, var(--blue) 38%, var(--violet) 72%, var(--magenta) 100%);
+            --bg-glow-a: rgba(255, 111, 0, .09); /* From --cyan */
+            --bg-glow-b: rgba(42, 42, 42, .09); /* From --magenta */
+            --bg-wash: linear-gradient(135deg, rgba(255,111,0,.06) 0%, rgba(216,67,21,.05) 32%, rgba(117,117,117,.05) 66%, rgba(42,42,42,.07) 100%);
+            
+            --dot-confidential: #C98A00; /* Color estándar para badge confidencial */
+
+            /* Fuentes */
+            --font-display: 'Playfair Display', serif;
+            --font-body: 'Poppins', sans-serif;
+            --font-label: 'Montserrat', sans-serif;
         }
-        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
-        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-        .wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-        .slide.active{display:block;opacity:1;transform:translateY(0)}
-        .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-        .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-        .control-btn:hover{background:var(--cyan);border-color:var(--cyan);color:#fff}
-        .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
-        #slide-number-display{font-family:'Montserrat',sans-serif;font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
-        .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
-        .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
-        .s-body{overflow:hidden;display:flex;flex-direction:column;justify-content:center;gap:22px}
-        .cover-body,.cover__body{overflow:hidden}
 
-        /* Slide specific CSS */
-        .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
-        .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
-        .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
-        .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
-        .cover__eyebrow{font-family:var(--font-label);font-weight:700;font-size:14px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo)}
-        .cover__title{font-family:var(--font-display);font-weight:900;font-size:78px;line-height:1.1;color:var(--text-hi)}
-        .cover__subtitle{font-family:var(--font-body);font-weight:400;font-size:24px;color:var(--text-mid);max-width:700px}
-        .cover__para-client{font-family:var(--font-label);font-weight:700;font-size:18px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);margin-top:20px}
-        .cover__meta-item label{font-family:var(--font-label);font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:6px}
-        .cover__meta-item span{font-family:var(--font-body);font-weight:500;font-size:14px;color:var(--text-mid)}
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: var(--bg-0);
+            color: var(--text-hi);
+            font-family: var(--font-body);
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(120% 90% at 82% 0%, var(--bg-glow-a) 0%, transparent 45%), radial-gradient(120% 90% at 8% 100%, var(--bg-glow-b) 0%, transparent 50%), var(--bg-wash);
+            background-attachment: fixed;
+        }
 
-        .slide-inner.internal{padding:38px 54px 20px 54px;display:grid;grid-template-rows:auto 1fr auto;gap:0}
-        .s-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid rgba(20,25,35,.06);margin-bottom:30px}
-        .s-header .wordmark{font-size:12px;letter-spacing:.03em}
-        .s-header .client-name{font-family:var(--font-label);font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--text-mid)}
-        .s-footer{display:flex;justify-content:space-between;align-items:center;padding-top:20px;margin-top:30px;border-top:1px solid rgba(20,25,35,.06);font-family:var(--font-label);font-weight:500;font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-faint)}
-        .s-footer .page-number{color:var(--cyan);font-weight:700;font-size:10px}
+        /* Estilos generales del shell */
+        .app-header, .slides-footer-controls {
+            flex: none;
+            height: 68px;
+            padding: 0 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 255, 255, .86);
+            backdrop-filter: blur(12px);
+            position: relative;
+            z-index: 50;
+        }
 
-        .s-eyebrow{font-family:var(--font-label);font-weight:700;font-size:14px;letter-spacing:.28em;text-transform:uppercase;color:var(--text-lo);margin-bottom:10px}
-        .s-title{font-family:var(--font-display);font-weight:700;font-size:48px;line-height:1.2;color:var(--text-hi);margin-bottom:20px;max-width:800px}
-        .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--text-mid);line-height:1.6;max-width:800px;margin-bottom:30px}
-        .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+        .app-header { border-bottom: 1px solid rgba(20, 25, 35, .10); }
+        .slides-footer-controls { border-top: 1px solid rgba(20, 25, 35, .10); }
 
-        /* Content Patterns */
-        .grid-2-col{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-        .grid-3-col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px}
-        .grid-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;gap:12px}
-        .grid-card--top-border{border-top:3px solid transparent;border-image:var(--grad-brand) 1;border-image-slice:1;padding-top:21px;}
-        .grid-card__title{font-family:var(--font-body);font-weight:600;font-size:18px;color:var(--text-hi);line-height:1.4}
-        .grid-card__text{font-family:var(--font-body);font-weight:400;font-size:15px;color:var(--text-lo);line-height:1.5}
-        .grid-card__icon{font-size:32px;color:var(--cyan);margin-bottom:10px}
+        .wordmark {
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: .04em;
+            color: var(--text-hi);
+        }
 
-        .list-unstyled{list-style:none;padding:0;margin:0}
-        .list-item-bullet{display:flex;align-items:baseline;gap:12px;font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid);line-height:1.6;margin-bottom:10px}
-        .list-item-bullet::before{content:"\2022";color:var(--cyan);font-weight:bold;font-size:20px}
-        .list-item-icon{display:flex;align-items:flex-start;gap:15px;margin-bottom:20px}
-        .list-item-icon svg{width:24px;height:24px;color:var(--cyan);flex-shrink:0}
-        .list-item-icon span{font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid);line-height:1.6}
-        .list-item-icon strong{font-weight:600;color:var(--text-hi)}
+        .badge-confidential {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--dot-confidential);
+            background: color-mix(in srgb, var(--dot-confidential) 10%, transparent);
+            border: 1px solid color-mix(in srgb, var(--dot-confidential) 28%, transparent);
+            border-radius: 99px;
+            padding: 7px 16px;
+        }
 
-        .process-step{display:flex;align-items:center;gap:20px;margin-bottom:25px}
-        .process-step__number{font-family:var(--font-display);font-weight:700;font-size:42px;color:var(--text-faint);flex-shrink:0}
-        .process-step__content h3{font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--text-hi);margin-bottom:4px}
-        .process-step__content p{font-family:var(--font-body);font-weight:400;font-size:15px;color:var(--text-lo);line-height:1.5}
+        .badge-confidential::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--dot-confidential);
+        }
 
-        .cta-card{background:var(--bg-2);border-left:5px solid transparent;border-image:var(--grad-brand) 1;padding:30px;border-radius:var(--radius);display:flex;flex-direction:column;gap:15px}
-        .cta-card h3{font-family:var(--font-body);font-weight:700;font-size:24px;color:var(--text-hi)}
-        .cta-card p{font-family:var(--font-body);font-weight:400;font-size:16px;color:var(--text-mid);line-height:1.5}
-        .contact-info-item{display:flex;align-items:center;gap:12px;margin-bottom:8px}
-        .contact-info-item svg{width:20px;height:20px;color:var(--cyan);flex-shrink:0}
-        .contact-info-item span{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-hi)}
+        .app-content { flex: 1; min-height: 0; display: flex; }
+        .slides-viewport { flex: 1; display: flex; }
 
-        .roadmap-item{display:flex;align-items:center;gap:15px;margin-bottom:20px;position:relative}
-        .roadmap-item__icon{background:var(--cyan);color:#fff;border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;font-size:14px;flex-shrink:0;z-index:1}
-        .roadmap-item__text{font-family:var(--font-body);font-weight:500;font-size:16px;color:var(--text-hi)}
-        .roadmap-connector{position:absolute;left:17px;top:36px;bottom:-5px;width:2px;background:rgba(20,25,35,.10)}
-        .roadmap-item:last-child .roadmap-connector{display:none;}
+        .slides-container {
+            flex: 1;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 22px 40px;
+            min-width: 0;
+        }
 
-        .price-table{width:100%;border-collapse:collapse;margin-top:20px}
-        .price-table th, .price-table td{text-align:left;padding:12px 15px;border-bottom:1px solid var(--card-border);font-family:var(--font-body);font-size:15px}
-        .price-table th{font-weight:600;color:var(--text-hi);background:var(--bg-1)}
-        .price-table td{font-weight:400;color:var(--text-mid)}
-        .price-table td strong{font-weight:600;color:var(--text-hi)}
-        .price-table tr:last-child td{border-bottom:none}
+        .slide {
+            position: absolute;
+            width: 1056px;
+            height: 594px;
+            zoom: var(--slide-scale, 1);
+            display: none;
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity .45s ease, transform .45s ease;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .22);
+        }
 
+        .slide.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-inner {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            position: relative;
+            color: var(--text-hi);
+            background: radial-gradient(120% 90% at 82% 18%, var(--bg-glow-a) 0%, transparent 45%), radial-gradient(120% 120% at 12% 92%, var(--bg-glow-b) 0%, transparent 50%), var(--bg-wash), linear-gradient(150deg, var(--bg-0) 0%, var(--bg-1) 55%, var(--bg-deep) 100%);
+            display: grid;
+            grid-template-rows: 38px 1fr 20px; /* Header, body, footer for internal slides */
+            padding: 0 54px 44px; /* Default for cover, overridden for internal */
+        }
+        
+        .slide-inner.cover {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            padding: 44px 54px; /* Padding for cover slide */
+        }
+
+        /* Controladores de navegación */
+        .control-btn {
+            background: none;
+            border: 1px solid rgba(20, 25, 35, .14);
+            color: var(--text-hi);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background .2s ease, border-color .2s ease, color .2s ease;
+        }
+
+        .control-btn:hover {
+            background: var(--blue);
+            border-color: var(--blue);
+            color: #fff;
+        }
+
+        .slide-indicator {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex: 1;
+            max-width: 520px;
+            margin: 0 26px;
+        }
+
+        #slide-number-display {
+            font-family: var(--font-label);
+            font-weight: 600;
+            font-size: 12.5px;
+            color: var(--text-mid);
+            min-width: 44px;
+            text-align: right;
+        }
+
+        .progress-bar-bg {
+            flex: 1;
+            height: 6px;
+            background: rgba(20, 25, 35, .07);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            width: 10%;
+            background: var(--grad-brand);
+            transition: width .3s ease;
+        }
+
+        /* Estilos de texto en gradiente */
+        .gt {
+            background: var(--grad-brand);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+        }
+
+        /* Estilos de portada */
+        .cover__topbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            top: 44px;
+            left: 54px;
+            right: 54px;
+        }
+
+        .cover__body {
+            text-align: center;
+            max-width: 700px;
+            overflow: hidden; /* Necesario para autofit */
+            height: 100%; /* Permitir que el autofit ajuste esto */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+        }
+        .cover__body .eyebrow {
+            font-family: var(--font-label);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-lo);
+            margin-bottom: 8px;
+        }
+        .cover__body .title {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 68px;
+            line-height: 1.1;
+            color: var(--text-hi);
+            margin-bottom: 24px;
+        }
+        .cover__body .subtitle {
+            font-family: var(--font-body);
+            font-size: 20px;
+            line-height: 1.5;
+            color: var(--text-mid);
+            max-width: 560px;
+        }
+        .cover__meta {
+            width: 100%;
+            border-top: 1px solid rgba(20, 25, 35, .10);
+            padding-top: 24px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            text-align: left;
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text-mid);
+        }
+        .cover__meta strong { color: var(--text-hi); font-weight: 600; }
+
+        /* Estilos de laminas internas */
+        .slide-inner.internal {
+            grid-template-rows: 38px 1fr 20px;
+            padding: 44px 54px 34px;
+        }
+
+        .s-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(20,25,35,.07);
+            padding-bottom: 12px;
+            margin-bottom: 24px;
+        }
+        .s-header .wordmark { font-size: 12px; letter-spacing: .02em; }
+        .s-header .client-name {
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+
+        .s-body {
+            overflow: hidden; /* Importante para autofit */
+            position: relative;
+            height: 100%; /* Necesario para que el autofit mida correctamente */
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .s-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 24px;
+            font-family: var(--font-label);
+            font-weight: 500;
+            font-size: 10px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--text-faint);
+        }
+        .s-footer .page-number {
+            color: var(--blue); /* Color de acento */
+            font-weight: 700;
+        }
+
+        .s-body .eyebrow {
+            font-family: var(--font-label);
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-lo);
+            margin-bottom: 8px;
+        }
+
+        .s-body .s-title {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 42px;
+            line-height: 1.2;
+            color: var(--text-hi);
+            margin-bottom: 18px;
+        }
+        .s-body .s-subtitle {
+            font-family: var(--font-body);
+            font-size: 18px;
+            line-height: 1.5;
+            color: var(--text-mid);
+            margin-bottom: 28px;
+        }
+
+        /* Patrones de contenido */
+        .metric-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 28px;
+        }
+        .metric-card {
+            background: var(--bg-2);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--grad-brand);
+        }
+        .metric-card strong {
+            display: block;
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 38px;
+            line-height: 1.2;
+            color: var(--text-hi);
+            margin-bottom: 8px;
+        }
+        .metric-card span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-mid);
+        }
+
+        .content-split-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 28px;
+        }
+        .content-split-2 .col h3 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 26px;
+            color: var(--text-hi);
+            margin-bottom: 12px;
+        }
+        .content-split-2 .col p {
+            font-family: var(--font-body);
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--text-mid);
+            margin-bottom: 16px;
+        }
+        .content-split-2 .col ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-split-2 .col li {
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--text-mid);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+        .content-split-2 .col li::before {
+            content: '✓';
+            color: var(--blue);
+            font-weight: bold;
+            flex-shrink: 0;
+            line-height: 1.6;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-top: 28px;
+        }
+        .feature-item {
+            background: var(--bg-2);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .feature-item .icon {
+            font-size: 32px;
+            color: var(--blue);
+            margin-bottom: 8px;
+        }
+        .feature-item h4 {
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-hi);
+        }
+        .feature-item p {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text-lo);
+            line-height: 1.5;
+        }
+        .feature-item .num {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--text-faint);
+            opacity: 0.6;
+        }
+
+        .flow-steps {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 30px;
+            margin-top: 40px;
+        }
+        .flow-step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+        }
+        .flow-step:not(:last-child)::after {
+            content: '→';
+            position: absolute;
+            right: -25px;
+            top: 30px;
+            font-size: 30px;
+            color: var(--text-faint);
+        }
+        .flow-step .step-num {
+            display: inline-flex;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--blue);
+            color: #fff;
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 24px;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+        .flow-step h4 {
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-hi);
+            margin-bottom: 10px;
+        }
+        .flow-step p {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text-lo);
+            line-height: 1.5;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        .cta-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            position: relative;
+            padding-left: 20px;
+        }
+        .cta-steps::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 2px;
+            background: var(--text-faint);
+            opacity: 0.5;
+        }
+        .cta-step {
+            position: relative;
+        }
+        .cta-step::before {
+            content: '•';
+            position: absolute;
+            left: -12px;
+            top: 2px;
+            font-size: 20px;
+            color: var(--blue);
+        }
+        .cta-step strong {
+            display: block;
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-hi);
+            margin-bottom: 6px;
+        }
+        .cta-step p {
+            font-family: var(--font-body);
+            font-size: 15px;
+            color: var(--text-mid);
+            line-height: 1.5;
+        }
+
+        .contact-card {
+            background: var(--bg-2);
+            border: 1px solid var(--card-border);
+            border-left: 5px solid var(--blue);
+            border-radius: var(--radius);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: flex-start;
+        }
+        .contact-card h4 {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 28px;
+            color: var(--text-hi);
+        }
+        .contact-card .role {
+            font-family: var(--font-label);
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-lo);
+            margin-bottom: 10px;
+        }
+        .contact-card .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--font-body);
+            font-size: 16px;
+            color: var(--text-mid);
+        }
+        .contact-card .contact-detail strong {
+            color: var(--text-hi);
+            font-weight: 600;
+        }
+        .contact-card .contact-detail svg {
+            color: var(--blue);
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+        }
+        .contact-card .contact-detail a {
+            color: var(--text-mid);
+            text-decoration: none;
+            transition: color .2s ease;
+        }
+        .contact-card .contact-detail a:hover {
+            color: var(--blue);
+        }
+
+        .price-card {
+            background: var(--bg-2);
+            border: 1px solid var(--card-border);
+            border-radius: var(--radius);
+            padding: 24px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 180px; /* Ensure cards have similar height */
+        }
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--grad-brand);
+        }
+        .price-card h4 {
+            font-family: var(--font-label);
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--text-hi);
+            margin-bottom: 8px;
+        }
+        .price-card .price {
+            font-family: var(--font-display);
+            font-weight: 700;
+            font-size: 32px;
+            color: var(--text-hi);
+            margin-bottom: 4px;
+        }
+        .price-card .frequency {
+            font-family: var(--font-body);
+            font-size: 14px;
+            color: var(--text-lo);
+            margin-bottom: 12px;
+        }
+        .price-card .description {
+            font-family: var(--font-body);
+            font-size: 13px;
+            color: var(--text-mid);
+            line-height: 1.4;
+        }
     </style>
 </head>
 <body>
-<header class="app-header">
-    <div class="header-left"><span class="wordmark">Campuslands Full Service</span></div>
-    <div class="header-center"></div>
-    <div class="header-right"><span class="badge-confidential">Confidencial</span></div>
-</header>
-<main class="app-content">
-    <section class="slides-viewport">
-        <div class="slides-container" id="slides-container">
-
-            <!-- Slide 1: Portada -->
-            <div class="slide active" data-slide="1">
-                <div class="slide-inner cover">
-                    <div class="cover__topbar">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="badge-confidential">Confidencial</span>
-                    </div>
-                    <div class="cover__body">
-                        <span class="cover__eyebrow">Propuesta de valor</span>
-                        <h1 class="cover__title">Transformando la <span class="gt">Presencia Digital</span> de su Negocio</h1>
-                        <p class="cover__subtitle">Un sitio web a la medida para conectar con nuevos clientes, proyectando elegancia y confianza.</p>
-                        <p class="cover__para-client">PARA REMODELACIONES ALTO NIVEL</p>
-                    </div>
-                    <div class="cover__meta">
-                        <div class="cover__meta-item">
-                            <label>Preparado para</label>
-                            <span>Andres Felipe Cortes<br>Gerente Comercial</span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Preparado por</label>
-                            <span>Campuslands Full Service</span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Fecha</label>
-                            <span>23 de Julio de 2024</span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Version</label>
-                            <span>1.0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2: Diagnóstico/Línea Base -->
-            <div class="slide" data-slide="2">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">01 · Diagnóstico actual</span>
-                        <h2 class="s-title">Del <strong style="color:var(--cyan);">Boca a Boca</strong> a una Experiencia Digital <span class="gt">Estructurada</span></h2>
-                        <p class="s-subtitle">Hemos identificado los desafíos que hoy limitan su crecimiento y la percepción de marca:</p>
-                        <div class="grid-2-col">
-                            <ul class="list-unstyled">
-                                <li class="list-item-icon">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-                                    <span><strong>Falta de Portafolio Organizado:</strong> Los clientes no tienen un lugar centralizado para ver proyectos anteriores con fotos de antes y después.</span>
-                                </li>
-                                <li class="list-item-icon">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-                                    <span><strong>Proceso de Trabajo Incomprendido:</strong> Abundan las preguntas repetitivas sobre el proceso, restando eficiencia al equipo comercial.</span>
-                                </li>
-                            </ul>
-                            <ul class="list-unstyled">
-                                <li class="list-item-icon">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-                                    <span><strong>Pérdida de Credibilidad:</strong> Competidores con presencia web y renders generan una percepción de mayor profesionalismo.</span>
-                                </li>
-                                <li class="list-item-icon">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                                    <span><strong>Gestión de Citas Ineficiente:</strong> La coordinación de visitas técnicas gratuitas se diluye en mensajes de WhatsApp.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">01</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3: La Solución / Arquitectura -->
-            <div class="slide" data-slide="3">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">02 · La Propuesta</span>
-                        <h2 class="s-title">Una Presencia Digital que <span class="gt">Inspira Confianza</span> y Genera Proyectos</h2>
-                        <p class="s-subtitle">Diseñaremos y construiremos un sitio web profesional que funcionará como su principal activo digital:</p>
-                        <div class="grid-3-col">
-                            <div class="grid-card grid-card--top-border">
-                                <div class="grid-card__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
-                                </div>
-                                <h3 class="grid-card__title">Captación Estratégica</h3>
-                                <p class="grid-card__text">Transformaremos el interés en oportunidades de negocio, atrayendo a su público objetivo.</p>
-                            </div>
-                            <div class="grid-card grid-card--top-border">
-                                <div class="grid-card__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                                </div>
-                                <h3 class="grid-card__title">Portafolio Inmersivo</h3>
-                                <p class="grid-card__text">Muestre sus más de 180 proyectos con galerías de antes/después, reforzando su credibilidad.</p>
-                            </div>
-                            <div class="grid-card grid-card--top-border">
-                                <div class="grid-card__icon">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline></svg>
-                                </div>
-                                <h3 class="grid-card__title">Información Transparente</h3>
-                                <p class="grid-card__text">Eduque a sus clientes sobre su proceso de trabajo, resolviendo dudas de forma proactiva.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">02</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4: Módulos / Alcance (Parte 1) -->
-            <div class="slide" data-slide="4">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">03 · Módulos del Proyecto</span>
-                        <h2 class="s-title">Componentes Clave para su <span class="gt">Nuevo Sitio Web</span></h2>
-                        <p class="s-subtitle">Diseñaremos módulos específicos que resuelven sus necesidades y potencian su propuesta de valor.</p>
-                        <div class="grid-2-col">
-                            <div class="process-step">
-                                <div class="process-step__number" style="color: var(--cyan);">01</div>
-                                <div class="process-step__content">
-                                    <h3>Portafolio de Proyectos</h3>
-                                    <p>Una galería organizada por tipo (cocinas, baños, ampliaciones, oficinas) con fotos de antes y después que demuestran su calidad.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="process-step__number" style="color: var(--cyan);">02</div>
-                                <div class="process-step__content">
-                                    <h3>Nuestro Proceso</h3>
-                                    <p>Explicación clara de las 4 etapas de trabajo: visita técnica, diseño y cotización, ejecución de obra, y entrega con garantía.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">03</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 5: Módulos / Alcance (Parte 2) -->
-            <div class="slide" data-slide="5">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">04 · Experiencia de Usuario</span>
-                        <h2 class="s-title">Conectando Clientes con <span class="gt">Facilidad y Transparencia</span></h2>
-                        <p class="s-subtitle">Funcionalidades pensadas para la comodidad del usuario y la eficiencia de su equipo.</p>
-                        <div class="grid-2-col">
-                            <div class="process-step">
-                                <div class="process-step__number" style="color: var(--violet);">03</div>
-                                <div class="process-step__content">
-                                    <h3>Agenda de Visita Técnica Gratuita</h3>
-                                    <p>Un formulario simple para que el cliente deje sus datos y la zona del proyecto, simplificando la coordinación.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="process-step__number" style="color: var(--violet);">04</div>
-                                <div class="process-step__content">
-                                    <h3>Testimonios de Clientes</h3>
-                                    <p>Espacio dedicado para comentarios reales de proyectos entregados, construyendo confianza y validación social.</p>
-                                </div>
-                            </div>
-                            <div class="process-step">
-                                <div class="process-step__number" style="color: var(--violet);">05</div>
-                                <div class="process-step__content">
-                                    <h3>Botón Directo de WhatsApp</h3>
-                                    <p>Visible en todo momento para resolver dudas rápidas y facilitar la comunicación directa con su equipo.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">04</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 6: Por qué Remodelaciones Alto Nivel -->
-            <div class="slide" data-slide="6">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">05 · Valor Diferencial</span>
-                        <h2 class="s-title">La Confianza de Elegir <span class="gt">Calidad y Experiencia</span></h2>
-                        <p class="s-subtitle">Sus atributos únicos serán la base de su nueva comunicación digital:</p>
-                        <div class="grid-2-col">
-                            <ul class="list-unstyled">
-                                <li class="list-item-bullet">Equipo propio (no subcontratan mano de obra), garantizando un control de calidad superior.</li>
-                                <li class="list-item-bullet">Visita técnica y cotización sin costo antes de iniciar cualquier proyecto.</li>
-                            </ul>
-                            <ul class="list-unstyled">
-                                <li class="list-item-bullet">Garantía de 2 años por escrito en todos los acabados, un sello de su compromiso.</li>
-                                <li class="list-item-bullet">Más de 180 proyectos entregados en 11 años, con una alta tasa de clientes recurrentes.</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">05</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 7: Inversión y Cronograma -->
-            <div class="slide" data-slide="7">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="s-eyebrow">06 · Plan de Ejecución</span>
-                        <h2 class="s-title">Inversión y Tiempo: Un <span class="gt">Camino Claro</span> Hacia su Transformación</h2>
-                        <p class="s-subtitle">Nuestro objetivo es un lanzamiento rápido y eficiente, antes de la temporada alta de fin de año.</p>
-                        <h3>Cronograma Estimado:</h3>
-                        <p style="font-family:var(--font-body);font-weight:500;font-size:16px;color:var(--text-hi);margin-bottom:20px;">
-                            Lanzamiento de la página en <strong>3 a 4 semanas</strong>.
-                        </p>
-
-                        <h3>Rangos de Inversión de Referencia:</h3>
-                        <table class="price-table">
-                            <thead>
-                                <tr>
-                                    <th>Tipo de Proyecto</th>
-                                    <th>Duración Típica</th>
-                                    <th>Rango de Inversión</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Remodelación de Cocina</td>
-                                    <td>3 a 5 semanas</td>
-                                    <td><strong>$8.000.000 - $22.000.000 COP</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Remodelación de Baño</td>
-                                    <td>2 a 3 semanas</td>
-                                    <td><strong>$4.500.000 - $12.000.000 COP</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Ampliación de Vivienda</td>
-                                    <td>6 a 12 semanas</td>
-                                    <td>Valor por definir (según metros cuadrados, se cotiza en visita)</td>
-                                </tr>
-                                <tr>
-                                    <td>Adecuación de Oficinas</td>
-                                    <td>4 a 8 semanas</td>
-                                    <td>Valor por definir (según alcance, se cotiza en visita)</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p style="font-family:var(--font-body);font-weight:400;font-size:14px;color:var(--text-faint);margin-top:20px;">Nota: El valor final de la propuesta se ajustará al alcance detallado y las funcionalidades requeridas.</p>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">06</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 8: Cierre y Próximos Pasos -->
-            <div class="slide" data-slide="8">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">Remodelaciones Alto Nivel</span>
-                    </div>
-                    <div class="s-body" style="gap:40px;justify-content:flex-start;padding-top:40px">
-                        <span class="s-eyebrow">07 · Hablemos</span>
-                        <h2 class="s-title">Su Próximo Paso Hacia el <span class="gt">Éxito Digital</span></h2>
-                        <div class="grid-2-col" style="align-items:start;">
-                            <div>
-                                <h3 style="font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--text-hi);margin-bottom:25px;">Cómo iniciar su transformación:</h3>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-item__icon">1</div>
-                                    <span class="roadmap-item__text"><strong>Revisión y Ajuste:</strong> Analicemos esta propuesta y definamos el alcance final.</span>
-                                    <div class="roadmap-connector"></div>
-                                </div>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-item__icon">2</div>
-                                    <span class="roadmap-item__text"><strong>Acuerdo y Planificación:</strong> Definamos juntos un cronograma detallado para el desarrollo.</span>
-                                    <div class="roadmap-connector"></div>
-                                </div>
-                                <div class="roadmap-item">
-                                    <div class="roadmap-item__icon">3</div>
-                                    <span class="roadmap-item__text"><strong>Activación del Proyecto:</strong> Empecemos a construir su nueva presencia digital.</span>
-                                </div>
-                            </div>
-                            <div class="cta-card">
-                                <h3>Contacto Directo</h3>
-                                <p>Listo para llevar su negocio al siguiente nivel? Conversemos sobre sus objetivos.</p>
-                                <div class="contact-info-item">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-3.47l-4.11-4.11a2 2 0 0 1-.29-2.73 21.43 21.43 0 0 1 1-1.78l.49-.49a.78.78 0 0 0 .09-1.09l-2.07-2.07a.78.78 0 0 0-1.09.09l-.49.49a21.43 21.43 0 0 1-1.78 1 2 2 0 0 1-2.73-.29L2 9.47V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2 15.09 15.09 0 0 0 1 3c.85 1 2 1.41 3 1.41a2 2 0 0 1 2-2 15.09 15.09 0 0 0 3-1V4a2 2 0 0 1 2 2z"></path></svg>
-                                    <span>+57 320 894 1156 (WhatsApp)</span>
-                                </div>
-                                <div class="contact-info-item">
-                                    <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                                    <span>andres.cortes@remodelacionesaltonivel.com</span>
-                                </div>
-                                <p style="font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-mid);margin-top:10px;">Andres Felipe Cortes, Gerente Comercial</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion Remodelaciones Alto Nivel</span>
-                        <span class="page-number">07</span>
-                    </div>
-                </div>
-            </div>
-
+    <header class="app-header">
+        <div class="header-left">
+            <span class="wordmark">Campuslands Full Service</span>
         </div>
-    </section>
-</main>
-<footer class="slides-footer-controls">
-    <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-    <div class="slide-indicator"><span id="slide-number-display">1 / 7</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
-    <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
-</footer>
+        <div class="header-center"></div>
+        <div class="header-right">
+            <span class="badge-confidential">Confidencial</span>
+        </div>
+    </header>
 
-<script>
-    const state={currentSlide:1,totalSlides:7}; // Updated totalSlides to 7 (after counting the previous 7 slides, I decided to remove one 'modules' slide and combine)
-    function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
-    function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
-    function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
-    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
-    window.addEventListener('resize',resizeSlideStage);
-    function ajustarAutofit(){document.querySelectorAll('.s-body,.cover-body,.cover__body').forEach(el=>{let z=1;while(el.scrollHeight>el.clientHeight&&z>0.62){z-=0.03;el.style.zoom=z.toFixed(2);}});}
-    window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{setTimeout(ajustarAutofit,50);});});
-</script>
+    <main class="app-content">
+        <section class="slides-viewport">
+            <div class="slides-container" id="slides-container">
+
+                <!-- SLIDE 1: Portada -->
+                <div class="slide active" data-slide="1">
+                    <div class="slide-inner cover">
+                        <div class="cover__topbar">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="badge-confidential">Confidencial</span>
+                        </div>
+                        <div class="cover__body">
+                            <span class="eyebrow">TRANSFORMACIÓN DIGITAL ACTIVA</span>
+                            <h1 class="title">Propuesta para <span class="gt">Núcleo Funcional</span></h1>
+                            <p class="subtitle">Potenciando tu estudio boutique con una presencia digital a la altura de tu energía y disciplina.</p>
+                        </div>
+                        <div class="cover__meta">
+                            <div><strong>Preparado para:</strong><br>Camila Restrepo Ardila, Fundadora</div>
+                            <div><strong>Preparado por:</strong><br>Campuslands Full Service</div>
+                            <div><strong>Fecha:</strong><br>20 de septiembre de 2023</div> <!-- Usando fecha actual -->
+                            <div><strong>Versión:</strong><br>1.0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 2: Diagnóstico/Linea base -->
+                <div class="slide" data-slide="2">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">01 · DIAGNÓSTICO ACTUAL</span>
+                            <h2 class="s-title">El <span class="gt">desafío</span> del crecimiento sin herramientas digitales</h2>
+                            <p class="s-subtitle">Núcleo Funcional, con 95 miembros activos y 3 entrenadores certificados, enfrenta limitaciones operativas y de visibilidad que frenan su crecimiento.</p>
+                            <div class="content-split-2">
+                                <div class="col">
+                                    <h3>Problemas operativos y de gestión:</h3>
+                                    <ul>
+                                        <li>Agendamiento manual por WhatsApp y Google Sheets.</li>
+                                        <li>Choques y reclamos por falta de disponibilidad en tiempo real.</li>
+                                        <li>Información inconsistente sobre planes, explicada por WhatsApp.</li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h3>Barreras de visibilidad y conversión:</h3>
+                                    <ul>
+                                        <li>Ausencia en búsquedas online para "entrenamiento funcional Bucaramanga".</li>
+                                        <li>Pérdida de clientes frente a competidores con mejor presencia.</li>
+                                        <li>Falta de espacio para mostrar resultados y testimonios de miembros.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">01 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 3: La solución / arquitectura -->
+                <div class="slide" data-slide="3">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">02 · NUESTRA PROPUESTA</span>
+                            <h2 class="s-title">Una <span class="gt">plataforma dinámica</span> para tu estudio boutique</h2>
+                            <p class="s-subtitle">Creamos una página web que no solo sirve como vitrina de marca, sino como una potente herramienta de conversión y gestión para nuevos y actuales miembros.</p>
+                            <div class="content-split-2">
+                                <div class="col">
+                                    <h3>Visibilidad y Confianza Digital</h3>
+                                    <ul>
+                                        <li>Presencia online profesional y moderna.</li>
+                                        <li>Atracción de nuevos interesados en Bucaramanga.</li>
+                                        <li>Generación de confianza con testimonios y resultados reales.</li>
+                                    </ul>
+                                </div>
+                                <div class="col">
+                                    <h3>Eficiencia Operativa Mejorada</h3>
+                                    <ul>
+                                        <li>Claridad en planes y membresías.</li>
+                                        <li>Sistema simplificado para agendamiento de clases de prueba.</li>
+                                        <li>Comunicación directa y organizada vía WhatsApp.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">02 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 4: Modulos/alcance - Parte 1 (Planes y Horarios) -->
+                <div class="slide" data-slide="4">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">03 · ALCANCE DEL PROYECTO</span>
+                            <h2 class="s-title">Módulos <span class="gt">esenciales</span> para tu comunidad</h2>
+                            <p class="s-subtitle">Componentes clave para ofrecer una experiencia digital completa y funcional, desde la vitrina de marca hasta la conversión de miembros.</p>
+                            <div class="features-grid">
+                                <div class="feature-item">
+                                    <span class="num">01</span>
+                                    <h4>Planes y Membresías</h4>
+                                    <p>Explicación clara de los planes (clases grupales, entrenamiento personalizado, membresía mixta) con sus inclusiones.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="num">02</span>
+                                    <h4>Horario de Clases Dinámico</h4>
+                                    <p>Vista semanal de los tipos de clase (fuerza funcional, HIIT, movilidad) con sus horarios actualizados.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="num">03</span>
+                                    <h4>Resultados y Testimonios</h4>
+                                    <p>Espacio dedicado para mostrar transformaciones reales de miembros y sus historias de éxito.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">03 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 5: Modulos/alcance - Parte 2 (Formulario y Contacto) -->
+                <div class="slide" data-slide="5">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">04 · FUNCIONALIDADES CLAVE</span>
+                            <h2 class="s-title">Impulsa la <span class="gt">confianza</span> y el crecimiento</h2>
+                            <p class="s-subtitle">Herramientas diseñadas para maximizar la conversión de interesados y simplificar la resolución de dudas.</p>
+                            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                <div class="feature-item">
+                                    <span class="num">04</span>
+                                    <h4>Formulario Clase de Prueba Gratuita</h4>
+                                    <p>Permite a los interesados agendar fácilmente su primera clase sin costo.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="num">05</span>
+                                    <h4>Botón Directo de WhatsApp</h4>
+                                    <p>Acceso rápido para resolver dudas y mantener una comunicación cercana antes de agendar.</p>
+                                </div>
+                            </div>
+                            <div class="metric-cards-grid" style="grid-template-columns: 1fr;">
+                                <div class="metric-card">
+                                    <strong>Público Objetivo</strong>
+                                    <span>Hombres y mujeres entre 25 y 45 años en Bucaramanga que buscan entrenamiento guiado.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">04 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 6: Diferenciales de Núcleo Funcional -->
+                <div class="slide" data-slide="6">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">05 · NUESTRO VALOR</span>
+                            <h2 class="s-title">Los <span class="gt">pilares</span> de Núcleo Funcional en digital</h2>
+                            <p class="s-subtitle">Destacamos los diferenciales de tu estudio para atraer a un público que valora la atención personalizada y la calidad.</p>
+                            <div class="features-grid" style="grid-template-columns: repeat(2, 1fr);">
+                                <div class="feature-item">
+                                    <span class="icon">🏋️‍♀️</span>
+                                    <h4>Grupos Pequeños y Atención Personalizada</h4>
+                                    <p>Máximo 8 personas por clase, garantizando un seguimiento real e individualizado.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="icon">✅</span>
+                                    <h4>Entrenadores Certificados</h4>
+                                    <p>Con seguimiento de progreso individual cada 4 semanas para resultados óptimos.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="icon">✨</span>
+                                    <h4>Instalaciones y Equipos de Vanguardia</h4>
+                                    <p>Nuevas instalaciones con equipo funcional importado para una experiencia premium.</p>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="icon">🎁</span>
+                                    <h4>Primera Clase de Prueba Gratuita</h4>
+                                    <p>Una oportunidad sin compromiso para que los nuevos interesados vivan la experiencia Núcleo Funcional.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">05 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 7: Planes y Precios (Inversión) -->
+                <div class="slide" data-slide="7">
+                    <div class="slide-inner internal glow-b">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body">
+                            <span class="eyebrow">06 · INVERSIÓN Y PLANES</span>
+                            <h2 class="s-title">Invierte en tu <span class="gt">crecimiento</span></h2>
+                            <p class="s-subtitle">Ofrece claridad en tus opciones de planes para facilitar la decisión de tus futuros miembros y optimizar tu gestión.</p>
+                            <div class="features-grid">
+                                <div class="price-card">
+                                    <h4>Clases Grupales</h4>
+                                    <div class="price"><strong>$189.000 COP</strong></div>
+                                    <div class="frequency">mensual</div>
+                                    <p class="description">3 veces por semana</p>
+                                </div>
+                                <div class="price-card">
+                                    <h4>Clases Grupales Ilimitadas</h4>
+                                    <div class="price"><strong>$249.000 COP</strong></div>
+                                    <div class="frequency">mensual</div>
+                                    <p class="description">Acceso sin límite a todas las clases grupales.</p>
+                                </div>
+                                <div class="price-card">
+                                    <h4>Entrenamiento Personalizado 1 a 1</h4>
+                                    <div class="price"><strong>$420.000 COP</strong></div>
+                                    <div class="frequency">mensual</div>
+                                    <p class="description">2 sesiones individuales por semana.</p>
+                                </div>
+                                <div class="price-card">
+                                    <h4>Plan Mixto</h4>
+                                    <div class="price">Valor por definir</div>
+                                    <div class="frequency">mensual</div>
+                                    <p class="description">Diseño a medida según la combinación de servicios elegida.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">06 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SLIDE 8: Cronograma y Cierre -->
+                <div class="slide" data-slide="8">
+                    <div class="slide-inner internal glow-a">
+                        <div class="s-header">
+                            <span class="wordmark">Campuslands Full Service</span>
+                            <span class="client-name">Núcleo Funcional</span>
+                        </div>
+                        <div class="s-body" style="justify-content: center;">
+                            <span class="eyebrow">07 · PRÓXIMOS PASOS</span>
+                            <h2 class="s-title">Transformación en <span class="gt">tiempo récord</span> para tu estudio</h2>
+                            <p class="s-subtitle">Estamos listos para implementar tu nueva plataforma digital en un plazo ágil y estratégico.</p>
+                            <div class="cta-grid">
+                                <div class="cta-steps">
+                                    <div class="cta-step">
+                                        <strong>1. Aprobación y contenidos</strong>
+                                        <p>Una vez aprobada esta propuesta, recopilaremos los contenidos finales (textos, imágenes, horarios).</p>
+                                    </div>
+                                    <div class="cta-step">
+                                        <strong>2. Desarrollo y pruebas</strong>
+                                        <p>Nuestro equipo trabajará intensamente para construir y probar tu nueva página web.</p>
+                                    </div>
+                                    <div class="cta-step">
+                                        <strong>3. Lanzamiento estratégico</strong>
+                                        <p>La página estará lista antes de las inscripciones del "reto de fin de año" (aproximadamente <strong>2 semanas</strong>).</p>
+                                    </div>
+                                </div>
+                                <div class="contact-card">
+                                    <h4>Camila Restrepo Ardila</h4>
+                                    <span class="role">Fundadora</span>
+                                    <div class="contact-detail">
+                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                        WhatsApp: <a href="https://wa.me/573135027764" target="_blank"><strong>+57 313 502 7764</strong></a>
+                                    </div>
+                                    <div class="contact-detail">
+                                        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                                        Correo: <a href="mailto:camila@nucleofuncional.com"><strong>camila@nucleofuncional.com</strong></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="s-footer">
+                            <span>Campuslands Full Service</span>
+                            <span>Cotización Núcleo Funcional</span>
+                            <span class="page-number">07 / 08</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="slides-footer-controls">
+        <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <div class="slide-indicator">
+            <span id="slide-number-display">1 / 8</span>
+            <div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div>
+        </div>
+        <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente">
+            <svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+    </footer>
+
+    <script>
+        const state = { currentSlide: 1, totalSlides: 8 };
+
+        function resizeSlideStage() {
+            const c = document.getElementById('slides-container');
+            if (!c) return;
+            const s = Math.min((c.clientWidth - 16) / 1056, (c.clientHeight - 16) / 594, 1.35);
+            document.documentElement.style.setProperty('--slide-scale', s.toFixed(4));
+        }
+
+        function updateSlideDisplay() {
+            document.querySelectorAll('.slide').forEach(sl => sl.classList.toggle('active', parseInt(sl.dataset.slide, 10) === state.currentSlide));
+            document.getElementById('slide-number-display').textContent = state.currentSlide + ' / ' + state.totalSlides;
+            document.getElementById('slide-progress').style.width = (state.currentSlide / state.totalSlides * 100) + '%';
+        }
+
+        function navigateSlide(d) {
+            state.currentSlide += d;
+            if (state.currentSlide > state.totalSlides) state.currentSlide = 1;
+            if (state.currentSlide < 1) state.currentSlide = state.totalSlides;
+            updateSlideDisplay();
+            ajustarAutofit(); // Adjust zoom on slide change
+        }
+
+        // Función de autofit
+        function ajustarAutofit() {
+            document.querySelectorAll('.s-body, .cover__body').forEach(el => {
+                el.style.zoom = 1; // Reset zoom first
+                let z = 1;
+                while (el.scrollHeight > el.clientHeight && z > 0.62) {
+                    z -= 0.03;
+                    el.style.zoom = z.toFixed(2);
+                }
+            });
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') navigateSlide(1);
+            if (e.key === 'ArrowLeft') navigateSlide(-1);
+        });
+
+        window.addEventListener('resize', resizeSlideStage);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            resizeSlideStage();
+            updateSlideDisplay();
+            // Asegurarse de que las fuentes estén cargadas antes de llamar a ajustarAutofit
+            (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => {
+                setTimeout(ajustarAutofit, 50); // Pequeño retraso para asegurar renderizado inicial
+            });
+        });
+    </script>
 </body>
 </html>
