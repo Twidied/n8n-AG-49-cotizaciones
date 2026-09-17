@@ -1,538 +1,566 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cotización Campuslands Full Service para NodoCore Tech</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        *{box-sizing:border-box;margin:0;padding:0}
-        :root{
-            /* Custom Colors for NodoCore Tech: Neon Green & Deep Tech Blue accents on light background */
-            --primary-neon-green: #00FF7F; /* Vibrant, slightly softened neon green */
-            --secondary-deep-blue: #1E3A52; /* Deep techy blue for accents */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta - Contadores del Oriente</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-            --bg-0:#F2F3F5;
-            --bg-1:#E9EBF0;
-            --bg-2:#FFFFFF;
-            --bg-deep:#E2E4E9;
-            --bg-glow-a:rgba(0, 255, 127, .09); /* From primary-neon-green */
-            --bg-glow-b:rgba(30, 58, 82, .09); /* From secondary-deep-blue */
-            --bg-wash:linear-gradient(135deg,rgba(0,255,127,.06) 0%,rgba(0,220,100,.05) 32%,rgba(30,58,82,.05) 66%,rgba(60,98,132,.07) 100%);
-            --text-hi:#14161B;
-            --text-mid:#3D4451;
-            --text-lo:#6B7280;
-            --text-faint:#9CA3AF;
-            --cyan:var(--primary-neon-green);
-            --blue:var(--primary-neon-green);
-            --violet:var(--secondary-deep-blue);
-            --magenta:var(--secondary-deep-blue);
-            --grad-brand:linear-gradient(100deg,var(--primary-neon-green) 0%, #00E070 38%,var(--secondary-deep-blue) 72%, #3E5A72 100%);
-            --card-border:rgba(20,25,35,.10);
-            --dot-confidential:#C98A00;
-            --radius:14px;
+:root{
+  /* Base Campuslands Full Service tokens */
+  --bg-0:#F2F3F5;
+  --bg-1:#E9EBEF;
+  --bg-2:#FFFFFF;
+  --bg-deep:#E2E4E9;
+  --text-hi:#14161B;
+  --text-mid:#3D4451;
+  --text-lo:#6B7280;
+  --text-faint:#9CA3AF;
+  --card-border:rgba(20,25,35,.10);
+  --dot-confidential:#C98A00;
+  --radius:14px;
+  --font-display:'Playfair Display',serif;
+  --font-body:'Poppins',sans-serif;
+  --font-label:'Montserrat',sans-serif;
 
-            --font-display:'Playfair Display',serif;
-            --font-body:'Poppins',sans-serif;
-            --font-label:'Montserrat',sans-serif;
-        }
-        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
-        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-        .wordmark{font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-        .slide.active{display:block;opacity:1;transform:translateY(0)}
-        .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-        .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
-        .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-        .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
-        #slide-number-display{font-family:var(--font-label);font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
-        .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
-        .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
-        .s-body{overflow:hidden}
-        .cover-body,.cover__body{overflow:hidden}
-        svg{display:block}
-        .icon-sm,.icon-md{flex:none}
-        .icon-sm{width:22px;height:22px}
-        .icon-md{width:36px;height:36px}
+  /* Client-specific colors: Azul institucional oscuro, Gris plata */
+  --client-blue-dark:#1F3F6D; /* Dark institutional blue */
+  --client-grey-silver:#A9B3BE; /* Silver grey */
 
-        /* --- Custom Styles for Proposal --- */
-        .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
-        .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
-        .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
-        .cover__body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-mid)}
-        .cover__body .title{font-family:var(--font-display);font-weight:900;font-size:74px;line-height:1.1;color:var(--text-hi)}
-        .cover__body .subtitle{font-family:var(--font-body);font-weight:500;font-size:20px;line-height:1.4;color:var(--text-lo);max-width:80%;margin-top:10px}
-        .cover__body .for-client{font-family:var(--font-label);font-weight:700;font-size:24px;letter-spacing:.04em;color:var(--text-hi);margin-top:30px;padding:12px 28px;background:var(--bg-1);border-radius:var(--radius);border:1px solid var(--card-border)}
+  /* Mapped Campuslands tokens */
+  --cyan:var(--client-blue-dark);
+  --blue:var(--client-blue-dark);
+  --violet:var(--client-grey-silver);
+  --magenta:var(--client-blue-dark); /* Primary accent color */
+  --grad-brand:linear-gradient(100deg, var(--client-blue-dark) 0%, #2A5A90 38%, #5C8BC1 72%, var(--client-grey-silver) 100%);
+  --bg-glow-a:rgba(31, 63, 109, .09); /* From client-blue-dark */
+  --bg-glow-b:rgba(169, 179, 190, .09); /* From client-grey-silver */
+  --bg-wash:linear-gradient(135deg,rgba(31,63,109,.06) 0%,rgba(169,179,190,.05) 32%,rgba(31,63,109,.05) 66%,rgba(169,179,190,.07) 100%);
+}
 
-        .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
-        .cover__meta-item label{font-family:var(--font-label);font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:4px}
-        .cover__meta-item span{font-family:var(--font-label);font-weight:700;font-size:13px;color:var(--text-mid);display:block}
+body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+.app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+.app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+.slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+.wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+.badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+.badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+.app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+.slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+.slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.slide.active{display:block;opacity:1;transform:translateY(0)}
+.slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
 
-        .slide-inner.internal{padding:38px 54px 20px 54px;display:grid;grid-template-rows:38px 1fr 20px;gap:20px}
-        .s-header{display:flex;justify-content:space-between;align-items:center;height:38px;padding-bottom:10px;border-bottom:1px solid rgba(20,25,35,.07)}
-        .s-header .wordmark{font-size:12px;letter-spacing:.08em;color:var(--text-faint)}
-        .s-header .client-name{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
+/* Slide-specific CSS */
+.slide-inner.cover{display:grid;grid-template-rows:1fr 1.8fr 1fr;padding:0 54px 44px}
+.slide-inner.cover .cover-top{display:flex;justify-content:space-between;align-items:flex-start;padding-top:34px}
+.slide-inner.cover .cover-body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
+.slide-inner.cover .cover-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo)}
+.slide-inner.cover .cover-body .title{font-family:var(--font-display);font-weight:900;font-size:72px;line-height:1.1;color:var(--text-hi)}
+.slide-inner.cover .cover-body .subtitle{font-family:var(--font-body);font-weight:400;font-size:24px;color:var(--text-mid)}
+.slide-inner.cover .cover-body .client-name{font-family:var(--font-display);font-weight:700;font-style:italic;font-size:38px;color:var(--text-hi);margin-top:20px}
+.slide-inner.cover .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;border-top:1px solid rgba(20,25,35,.1);margin-top:auto}
+.slide-inner.cover .cover-meta div{display:flex;flex-direction:column;gap:6px}
+.slide-inner.cover .cover-meta label{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-lo)}
+.slide-inner.cover .cover-meta span{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-mid)}
 
-        .s-body{overflow:hidden;}
-        .s-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
-        .s-body .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;color:var(--text-hi);margin-bottom:24px}
-        .s-body p{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-mid);margin-bottom:16px}
-        .s-body ul{list-style:none;padding-left:0;margin-bottom:16px}
-        .s-body ul li{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-mid);display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
-        .s-body ul li strong{color:var(--text-hi)}
-        .s-body ul li .icon-sm{margin-top:4px;color:var(--blue)}
+.slide-inner.internal{display:grid;grid-template-rows:auto 1fr auto;padding:34px 54px}
+.slide-inner.internal.glow-a{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+.slide-inner.internal.glow-b{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-b) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-a) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
 
-        /* Layout patterns */
-        .grid-2-col{display:grid;grid-template-columns:1fr 1fr;gap:30px}
-        .grid-3-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-        .grid-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
-        .card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
-        .card.bordered-top{border-top:3px solid transparent;border-image:var(--grad-brand);border-image-slice:1}
-        .card .card-icon{margin-bottom:14px;color:var(--blue)}
-        .card .card-title{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:8px}
-        .card .card-description{font-family:var(--font-body);font-size:15px;line-height:1.5;color:var(--text-lo)}
+.s-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+.s-header .wordmark-client{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
+.s-body{overflow:hidden}
+.s-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);margin-bottom:8px}
+.s-body .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;margin-bottom:14px;color:var(--text-hi)}
+.s-body .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--text-mid);margin-bottom:28px}
+.s-footer{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.s-footer .page-number{color:var(--magenta)}
 
-        .feature-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px}
-        .feature-card .number{font-family:var(--font-display);font-weight:700;font-size:36px;line-height:1;color:var(--text-faint);margin-bottom:10px}
-        .feature-card .title{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:10px}
-        .feature-card .description{font-family:var(--font-body);font-size:15px;line-height:1.5;color:var(--text-mid)}
+.gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 
-        .split-content{display:flex;gap:40px;height:100%}
-        .split-left,.split-right{flex:1;display:flex;flex-direction:column;gap:20px}
-        .split-middle-divider{width:1px;background:rgba(20,25,35,.10)}
+/* Content patterns */
+.list-dots{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5;color:var(--text-mid)}
+.list-dots li{position:relative;padding-left:24px}
+.list-dots li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--magenta);border-radius:50%}
 
-        .large-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px}
-        .large-card .header{display:flex;align-items:center;gap:15px;margin-bottom:10px}
-        .large-card .header .icon-md{color:var(--blue)}
-        .large-card .header .title{font-family:var(--font-label);font-weight:700;font-size:20px;color:var(--text-hi)}
-        .large-card ul{list-style:none;padding:0;margin:0}
-        .large-card ul li{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
-        .large-card ul li .icon-sm{color:var(--blue);margin-top:2px}
+.split-2-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;height:100%}
+.split-2-cols .col-left,.split-2-cols .col-right{display:flex;flex-direction:column;gap:18px}
+.split-2-cols .col-left p{font-size:18px;line-height:1.6;color:var(--text-mid)}
+.split-2-cols .col-right .feature-item{display:flex;align-items:center;gap:16px;font-size:17px;line-height:1.4;color:var(--text-hi);font-weight:500}
+.split-2-cols .col-right .feature-item svg{width:28px;height:28px;color:var(--blue)}
 
-        .tag-panel{background:var(--bg-1);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
-        .tag-panel .tag{background:var(--bg-2);border:1px solid var(--card-border);border-radius:99px;padding:8px 18px;font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.05em;color:var(--text-mid)}
+.grid-cards-2x2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px}
+.card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
+.card.bordered-top{border-top:3px solid transparent;border-image:var(--grad-brand) 1;padding-top:21px}
+.card h3{font-family:var(--font-body);font-weight:600;font-size:20px;color:var(--text-hi);margin-bottom:8px}
+.card p{font-size:16px;line-height:1.5;color:var(--text-mid)}
+.grid-cards-2x2 .card h3{font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--text-hi);margin-bottom:6px}
+.grid-cards-2x2 .card p{font-size:14px;line-height:1.5;color:var(--text-mid)}
 
-        .contact-steps{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:flex-start}
-        .vertical-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:30px}
-        .vertical-steps::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--card-border)}
-        .step-item{position:relative}
-        .step-item::before{content:'';position:absolute;left:-20px;top:8px;width:12px;height:12px;background:var(--blue);border-radius:50%;z-index:10}
-        .step-item .icon-sm{position:absolute;left:-28px;top:2px;color:white;width:20px;height:20px;z-index:11}
-        .step-item .step-title{font-family:var(--font-label);font-weight:700;font-size:16px;color:var(--text-hi);margin-bottom:4px}
-        .step-item .step-description{font-family:var(--font-body);font-size:14px;line-height:1.5;color:var(--text-lo)}
+.price-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-mid);
+}
+.price-table th, .price-table td {
+    border: 1px solid var(--card-border);
+    padding: 12px 18px;
+    text-align: left;
+}
+.price-table th {
+    background-color: var(--bg-deep);
+    font-family: var(--font-label);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--text-hi);
+}
+.price-table td strong {
+    color: var(--text-hi);
+}
+.price-table tr:nth-child(even) {
+    background-color: var(--bg-1);
+}
 
-        .contact-card{background:var(--bg-2);border-left:5px solid var(--primary-neon-green);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:10px}
-        .contact-card .card-header{display:flex;align-items:center;gap:15px;margin-bottom:10px}
-        .contact-card .card-header .icon-md{color:var(--primary-neon-green)}
-        .contact-card .card-header .card-title{font-family:var(--font-label);font-weight:700;font-size:22px;color:var(--text-hi)}
-        .contact-card .contact-detail{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid)}
-        .contact-card .contact-detail strong{color:var(--text-hi)}
-        .contact-card .cta-link{display:inline-block;margin-top:15px;padding:10px 20px;background:var(--grad-brand);color:#fff;font-family:var(--font-label);font-weight:600;font-size:14px;text-decoration:none;border-radius:var(--radius);text-align:center}
+.numbered-process{display:flex;flex-direction:column;gap:25px;margin-top:20px}
+.numbered-process .step{display:flex;align-items:flex-start;gap:20px}
+.numbered-process .step .number{width:48px;height:48px;border-radius:50%;background:var(--client-blue-dark);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:28px;flex-shrink:0}
+.numbered-process .step .content h3{font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--text-hi);margin-bottom:6px}
+.numbered-process .step .content p{font-size:17px;line-height:1.6;color:var(--text-mid)}
 
-        .s-footer{display:flex;justify-content:space-between;align-items:center;height:20px;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
-        .s-footer .page-number{color:var(--blue);font-weight:700}
+.two-big-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px;height:100%;align-items:center}
+.two-big-cards .card{padding:30px}
+.two-big-cards .card .icon-title{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.two-big-cards .card .icon-title svg{width:38px;height:38px;color:var(--client-blue-dark)}
+.two-big-cards .card .icon-title h3{font-family:var(--font-display);font-weight:700;font-size:28px;margin:0;color:var(--text-hi)}
+.two-big-cards .card ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:10px}
+.two-big-cards .card ul li{font-size:16px;line-height:1.5;color:var(--text-mid);position:relative;padding-left:28px}
+.two-big-cards .card ul li::before{content:"✔";position:absolute;left:0;color:var(--magenta);font-size:18px;top:0}
 
-        .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
-    </style>
+.investment-section{display:flex;flex-direction:column;gap:25px;margin-top:30px}
+.investment-item{display:flex;flex-direction:column;gap:8px;padding-left:15px;border-left:3px solid var(--card-border)}
+.investment-item h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--client-blue-dark);margin:0}
+.investment-item p{font-size:17px;line-height:1.6;color:var(--text-mid)}
+.investment-item h3 .value-label{font-size:20px;font-weight:600;color:var(--text-lo);margin-left:10px}
+
+.closing-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;height:100%;align-items:center}
+.closing-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:20px}
+.closing-steps .step-item{display:flex;align-items:center;gap:15px;font-size:18px;line-height:1.5;color:var(--text-mid);position:relative}
+.closing-steps .step-item .step-number{width:32px;height:32px;background:var(--client-blue-dark);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;flex-shrink:0;z-index:2}
+.closing-steps .step-connector{position:absolute;left:35px;top:40px;bottom:40px;width:2px;background:var(--card-border);z-index:1}
+.contact-card{background:var(--bg-2);border-left:5px solid var(--grad-brand);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.contact-card h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--text-hi);margin-bottom:10px}
+.contact-card p{font-size:17px;line-height:1.5;color:var(--text-mid)}
+.contact-card .contact-detail{display:flex;align-items:center;gap:12px;font-size:17px;color:var(--text-hi)}
+.contact-card .contact-detail svg{width:24px;height:24px;color:var(--client-blue-dark)}
+.contact-card .cta-button{display:inline-block;margin-top:20px;padding:12px 28px;background:var(--grad-brand);color:white;font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.05em;text-decoration:none;border-radius:99px;text-align:center;transition:transform .2s ease}
+.contact-card .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+</style>
 </head>
 <body>
-<header class="app-header">
-    <div class="header-left">
-        <span class="wordmark">Campuslands Full Service</span>
+<header class="app-header"><div class="header-left"><span class="wordmark">Campuslands Full Service</span></div><div class="header-center"></div><div class="header-right"><span class="badge-confidential">Confidencial</span></div></header>
+<main class="app-content"><section class="slides-viewport"><div class="slides-container" id="slides-container">
+  
+  <div class="slide active" data-slide="1"><div class="slide-inner cover">
+    <div class="cover-top">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="badge-confidential">Confidencial</span>
     </div>
-    <div class="header-center"></div>
-    <div class="header-right">
-        <span class="badge-confidential">Confidencial</span>
+    <div class="cover-body">
+      <span class="eyebrow">PROPUESTA DE VALOR</span>
+      <h1 class="title">Confianza en <span class="gt">Cifras</span>, Solidez en Digital</h1>
+      <p class="subtitle">Una propuesta para la presencia digital de su firma contable</p>
+      <h2 class="client-name">PARA Contadores del Oriente</h2>
     </div>
-</header>
-<main class="app-content">
-    <section class="slides-viewport">
-        <div class="slides-container" id="slides-container">
-
-            <div class="slide active" data-slide="1">
-                <div class="slide-inner cover">
-                    <div class="cover__topbar">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="badge-confidential">Confidencial</span>
-                    </div>
-                    <div class="cover__body">
-                        <span class="eyebrow">Propuesta de Desarrollo de Software</span>
-                        <h1 class="title"><strong>Potenciando</strong> la <span class="gt">Innovación Backend</span> para NodoCore Tech</h1>
-                        <p class="subtitle">Visibilidad, reputación y escalabilidad para tu startup tecnológica</p>
-                        <div class="for-client">PARA NodoCore Tech</div>
-                    </div>
-                    <div class="cover__meta">
-                        <div class="cover__meta-item">
-                            <label>Preparado para</label>
-                            <span>Sebastian Camilo Rueda Parra</span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Preparado por</label>
-                            <span>Campuslands Full Service</span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Fecha</label>
-                            <span><?php echo date('d M Y'); ?></span>
-                        </div>
-                        <div class="cover__meta-item">
-                            <label>Versión</label>
-                            <span>1.0</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="2">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">01 · SITUACIÓN ACTUAL</span>
-                        <h2 class="s-title">Superando las <span class="gt">Barreras de Crecimiento</span> por Referidos</h2>
-                        <p>NodoCore Tech, una startup con 2 años de experiencia en Bucaramanga, es experta en infraestructura backend, APIs y automatización. Sin embargo, su crecimiento está limitado por:</p>
-                        <ul>
-                            <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg>
-                                <strong>Dependencia de referidos</strong>: Toda la captación de clientes se basa en contactos personales, sin una presencia digital que atraiga nuevas oportunidades.
-                            </li>
-                            <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg>
-                                <strong>Imagen poco profesional</strong>: La falta de un sitio web moderno y la dependencia de PDFs genéricos restan competitividad frente a empresas con una fuerte presencia online.
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">02</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="3">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">02 · LA SOLUCIÓN PROPUESTA</span>
-                        <h2 class="s-title">Una Plataforma Digital que <span class="gt">Refleja tu Expertise</span></h2>
-                        <div class="split-content">
-                            <div class="split-left">
-                                <div class="large-card">
-                                    <div class="header">
-                                        <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-                                        <div class="title">Vitrina Digital Profesional</div>
-                                    </div>
-                                    <p class="card-description">Crearemos una plataforma web que proyecte la seriedad técnica y la innovación de NodoCore Tech, atrayendo a gerentes de tecnología y fundadores que buscan un partner confiable para escalar.</p>
-                                </div>
-                            </div>
-                            <div class="split-middle-divider"></div>
-                            <div class="split-right">
-                                <div class="large-card">
-                                    <div class="header">
-                                        <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                        <div class="title">Generación de Leads Calificados</div>
-                                    </div>
-                                    <p class="card-description">Implementaremos herramientas que faciliten la interacción con potenciales clientes, permitiéndoles expresar sus requerimientos de forma estructurada y acelerando el proceso de captación.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">03</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="4">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">03 · ALCANCE DEL PROYECTO</span>
-                        <h2 class="s-title">Servicios que Impulsan tu <span class="gt">Crecimiento y Seriedad Técnica</span></h2>
-                        <div class="grid-2-col">
-                            <div class="large-card">
-                                <div class="header">
-                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20 21v-7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v7"/><path d="M2 10l10-7 10 7-10 7z"/></svg>
-                                    <div class="title">Presentación de Servicios Detallada</div>
-                                </div>
-                                <ul>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Desarrollo de APIs</strong>: Explicación de capacidades y beneficios para integración de sistemas.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Automatización de procesos</strong>: Cómo optimizas operaciones y reduces costos.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Arquitectura Cloud e Integraciones a medida</strong>: Expertise en escalabilidad y soluciones personalizadas.
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="large-card">
-                                <div class="header">
-                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
-                                    <div class="title">Credibilidad y Conexión</div>
-                                </div>
-                                <ul>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Casos de éxito</strong>: Muestra tus logros con métricas concretas y testimonios.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Stack tecnológico</strong>: Una sección dedicada a las tecnologías que dominan, transmitiendo seriedad.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Formulario de contacto</strong>: Para captar requerimientos específicos de forma organizada.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">04</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="5">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">04 · CASOS DE ÉXITO</span>
-                        <h2 class="s-title">Resultados Comprobados: <span class="gt">Tu Impacto en Cifras</span></h2>
-                        <p>Diseñaremos una sección dinámica donde NodoCore Tech podrá destacar proyectos clave, ilustrando su capacidad para generar valor real. Incluiremos:</p>
-                        <div class="grid-3-col">
-                            <div class="card bordered-top">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                                <h3 class="card-title"><strong>Métricas Clave</strong></h3>
-                                <p class="card-description">Reducción de costos operativos, incremento de eficiencia, tiempos de respuesta optimizados y crecimiento de usuarios.</p>
-                            </div>
-                            <div class="card bordered-top">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21.2 11.2a7.5 7.5 0 0 1 0 1.6M2.8 11.2a7.5 7.5 0 0 0 0 1.6M14 2c-1.8 0-3.6.4-5.2 1.2M10 22c1.8 0 3.6-.4 5.2-1.2"/><circle cx="12" cy="12" r="10"/></svg>
-                                <h3 class="card-title"><strong>Desafíos Superados</strong></h3>
-                                <p class="card-description">Contexto del problema del cliente y la estrategia de NodoCore Tech para resolverlo con su expertise.</p>
-                            </div>
-                            <div class="card bordered-top">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 17H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2z"/><polyline points="7 10 12 15 17 10"/></svg>
-                                <h3 class="card-title"><strong>Testimonios Valiosos</strong></h3>
-                                <p class="card-description">Citas directas de clientes satisfechos que validan la calidad y el impacto de tus soluciones de software.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">05</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="6">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">05 · CAPACIDADES TÉCNICAS</span>
-                        <h2 class="s-title">El <span class="gt">Stack Tecnológico</span> que Impulsa tu Negocio</h2>
-                        <p>Para transmitir la seriedad técnica y la capacidad de NodoCore Tech, crearemos una sección que muestre el dominio de diversas tecnologías y lenguajes:</p>
-                        <div class="tag-panel" style="gap:15px; padding:30px">
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Python</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Node.js</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Java</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">AWS</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Google Cloud</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Docker</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Kubernetes</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">APIs REST/GraphQL</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Bases de Datos NoSQL</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Microservicios</span>
-                            <span class="tag" style="background:var(--bg-deep); padding:10px 22px; font-size:14px;">Integración Continua</span>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">06</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="7">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">06 · POR QUÉ ELEGIRTE</span>
-                        <h2 class="s-title">Los <span class="gt">Diferenciales</span> de NodoCore Tech</h2>
-                        <div class="grid-items">
-                            <div class="feature-card">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                                <h3 class="title"><strong>Equipo Senior y Especializado</strong></h3>
-                                <p class="description">Garantizamos que todas las tareas críticas son manejadas por expertos, sin juniors en roles clave, asegurando la máxima calidad.</p>
-                            </div>
-                            <div class="feature-card">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h12l4 4z"/><line x1="17" y1="21" x2="17" y2="12"/><line x1="7" y1="21" x2="7" y2="12"/><path d="M7 3v4a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3V3"/></svg>
-                                <h3 class="title"><strong>Metodología Ágil y Transparente</strong></h3>
-                                <p class="description">Entregas en sprints cortos con demos cada 2 semanas, asegurando visibilidad y adaptabilidad constante.</p>
-                            </div>
-                            <div class="feature-card">
-                                <svg class="icon-md card-icon" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                                <h3 class="title"><strong>Código Documentado y Transferible</strong></h3>
-                                <p class="description">Desarrollamos soluciones que permiten al cliente tomar el control total, evitando dependencias a largo plazo.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">07</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="8">
-                <div class="slide-inner internal glow-a">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">07 · INVERSIÓN Y CRONOGRAMA</span>
-                        <h2 class="s-title">Plan de <span class="gt">Inversión y Tiempo</span></h2>
-                        <div class="grid-2-col">
-                            <div class="large-card">
-                                <div class="header">
-                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                                    <div class="title">Modalidades de Inversión</div>
-                                </div>
-                                <ul>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Desarrollo de API a medida</strong>: Desde $8.000.000 COP (por proyecto).
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Automatización de procesos</strong>: Desde $5.500.000 COP (por proyecto).
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        <strong>Acompañamiento técnico mensual</strong>: Desde $3.200.000 COP/mes (retainer).
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="large-card">
-                                <div class="header">
-                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-                                    <div class="title">Cronograma Estimado</div>
-                                </div>
-                                <ul>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        Plazo esperado para el lanzamiento: <strong>3 semanas</strong>.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        Nuestro enfoque ágil asegura entregas eficientes y un rápido time-to-market.
-                                    </li>
-                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                        Comunicación constante para un proyecto alineado a tus necesidades.
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">08</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="slide" data-slide="9">
-                <div class="slide-inner internal glow-b">
-                    <div class="s-header">
-                        <span class="wordmark">Campuslands Full Service</span>
-                        <span class="client-name">NodoCore Tech</span>
-                    </div>
-                    <div class="s-body">
-                        <span class="eyebrow">08 · SIGUIENTES PASOS</span>
-                        <h2 class="s-title">Conversemos para <span class="gt">Construir tu Futuro Digital</span></h2>
-                        <div class="contact-steps">
-                            <div class="vertical-steps">
-                                <div class="step-item">
-                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <div class="step-title">1. Revisión Profunda</div>
-                                    <div class="step-description">Analicemos esta propuesta y ajustemos cada detalle para que cumpla con la visión de NodoCore Tech.</div>
-                                </div>
-                                <div class="step-item">
-                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <div class="step-title">2. Propuesta Económica Final</div>
-                                    <div class="step-description">Con un alcance definido, presentaremos una inversión precisa y un plan de trabajo detallado.</div>
-                                </div>
-                                <div class="step-item">
-                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
-                                    <div class="step-title">3. Lanzamiento y Escalabilidad</div>
-                                    <div class="step-description">Demos vida a tu nueva plataforma digital y empecemos a escalar tus operaciones con confianza.</div>
-                                </div>
-                            </div>
-                            <div class="contact-card">
-                                <div class="card-header">
-                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-                                    <div class="card-title">Contacta a Sebastián Camilo</div>
-                                </div>
-                                <div class="contact-detail"><strong>CTO y Cofundador</strong>, NodoCore Tech</div>
-                                <div class="contact-detail"><strong>WhatsApp</strong>: 300 715 6634</div>
-                                <div class="contact-detail"><strong>Correo</strong>: sebastian@nodocore.tech</div>
-                                <a href="mailto:sebastian@nodocore.tech" class="cta-link">Envíanos un correo</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="s-footer">
-                        <span>Campuslands Full Service</span>
-                        <span>Cotizacion NodoCore Tech</span>
-                        <span class="page-number">09</span>
-                    </div>
-                </div>
-            </div>
-
+    <div class="cover-meta">
+      <div>
+        <label>Preparado para</label>
+        <span>Ricardo Alfonso Melo Vega, Socio Director</span>
+      </div>
+      <div>
+        <label>Preparado por</label>
+        <span>Campuslands Full Service</span>
+      </div>
+      <div>
+        <label>Fecha</label>
+        <span>22 de septiembre de 2026</span>
+      </div>
+      <div>
+        <label>Versión</label>
+        <span>1.0</span>
+      </div>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="2"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">01 · DIAGNÓSTICO ACTUAL</span>
+      <h2 class="s-title">El Desafío: <span class="gt">Comunicación Fragmentada</span> y Crecimiento Limitado</h2>
+      <p class="s-subtitle">Su modelo actual depende de referidos y genera ineficiencias.</p>
+      <ul class="list-dots">
+        <li>Toda la captación de clientes nuevos depende de referidos, sin canal digital propio.</li>
+        <li>Muchas consultas repetidas por WhatsApp sobre plazos, documentos y tarifas.</li>
+        <li>No hay un lugar claro donde el cliente potencial pueda ver los servicios ofrecidos.</li>
+        <li>Pérdida de credibilidad frente a firmas competidoras con presencia web propia.</li>
+        <li>Falta de un canal organizado para que clientes actuales envíen documentos o agenden citas.</li>
+      </ul>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">01 / 10</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="3"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">02 · NUESTRA PROPUESTA</span>
+      <h2 class="s-title">Su Firma, <span class="gt">Digital</span> y Confiable</h2>
+      <p class="s-subtitle">Una plataforma web que proyecta profesionalismo y eficiencia.</p>
+      <div class="split-2-cols">
+        <div class="col-left">
+          <p>Desarrollaremos una presencia digital seria que transmita la confianza y solidez de su marca, utilizando los tonos azul institucional oscuro y gris plata. Este sitio web será su principal canal para atraer y atender clientes.</p>
+          <p>El objetivo es organizar la información, facilitar el primer contacto con clientes nuevos y mejorar la comunicación con los actuales, posicionándolos como líderes en asesoría contable y tributaria en la región.</p>
         </div>
-    </section>
-</main>
+        <div class="col-right">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span><strong>Servicios Claros:</strong> Presentación detallada de su oferta contable.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span><strong>Calendario Tributario:</strong> Información clave siempre a la mano del cliente.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <span><strong>Consultas Efectivas:</strong> FAQ y botón directo a WhatsApp.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <span><strong>Imagen Profesional:</strong> Posicionamiento sólido frente a la competencia.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">02 / 10</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="4"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">03 · MÓDULOS CLAVE DEL SITIO WEB</span>
+      <h2 class="s-title">Funcionalidades que <span class="gt">Simplifican</span> y Conectan</h2>
+      <p class="s-subtitle">Un sitio diseñado para educar, informar y facilitar el contacto con su firma.</p>
+      <div class="grid-cards-2x2">
+        <div class="card bordered-top">
+          <h3>Nuestros Servicios</h3>
+          <p>Explicación clara de contabilidad mensual para Pymes, declaración de renta, nómina y asesoría tributaria.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Calendario Tributario</h3>
+          <p>Fechas clave de vencimientos de declaración para consulta de clientes y prospectos.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Preguntas Frecuentes (FAQ)</h3>
+          <p>Respuestas a dudas comunes sobre documentos requeridos, plazos y procesos, reduciendo consultas repetidas.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Agenda de Cita de Diagnóstico</h3>
+          <p>Formulario simple para que nuevos clientes agenden su primera consulta de forma ordenada.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Contacto Directo WhatsApp</h3>
+          <p>Botón bien visible para atención rápida de clientes actuales y resolución de dudas urgentes.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Acerca de Nosotros (Opcional)</h3>
+          <p>Un espacio para detallar la trayectoria, el equipo y la filosofía de Contadores del Oriente.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">03 / 10</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="5"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">04 · SERVICIOS Y TARIFAS DE REFERENCIA</span>
+      <h2 class="s-title">Transparencia en sus <span class="gt">Servicios</span> Contables</h2>
+      <p class="s-subtitle">Precios orientativos para los principales servicios de Contadores del Oriente.</p>
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>Servicio</th>
+            <th>Frecuencia</th>
+            <th>Tarifa</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Contabilidad mensual pyme pequeña</strong></td>
+            <td>Mensual</td>
+            <td>$450.000 COP</td>
+          </tr>
+          <tr>
+            <td><strong>Contabilidad mensual pyme mediana</strong></td>
+            <td>Mensual</td>
+            <td>$850.000 COP</td>
+          </tr>
+          <tr>
+            <td><strong>Declaración de renta persona natural</strong></td>
+            <td>Anual</td>
+            <td>$180.000 COP</td>
+          </tr>
+          <tr>
+            <td><strong>Asesoría tributaria empresarial</strong></td>
+            <td>Por consulta o contrato</td>
+            <td>Se cotiza según alcance</td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size:14px; color:var(--text-lo); margin-top:20px;">*Los precios son de referencia. Los valores finales se definirán en la consulta inicial según la complejidad de cada caso.</p>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">04 / 10</span>
+    </div>
+  </div></div>
+
+  <div class="slide" data-slide="6"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">05 · EL PROCESO: ATENCIÓN Y AGENDAMIENTO</span>
+      <h2 class="s-title">De la Consulta a la <span class="gt">Solución</span> Contable</h2>
+      <p class="s-subtitle">Así facilitaremos la interacción de sus clientes con la firma, de forma clara y eficiente.</p>
+      <div class="numbered-process">
+        <div class="step">
+          <span class="number">1</span>
+          <div class="content">
+            <h3>Explora Nuestros Servicios</h3>
+            <p>Clientes nuevos pueden revisar detalladamente los servicios de contabilidad, nómina y asesoría tributaria en el sitio web.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="number">2</span>
+          <div class="content">
+            <h3>Resuelve Dudas en la FAQ</h3>
+            <p>Encuentra respuestas a las preguntas más comunes sobre plazos, documentos y tarifas sin necesidad de una llamada.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="number">3</span>
+          <div class="content">
+            <h3>Agenda tu Cita de Diagnóstico</h3>
+            <p>Utiliza el formulario web para programar una primera consulta gratuita y explorar soluciones personalizadas.</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="number">4</span>
+          <div class="content">
+            <h3>Contacto Directo y Ágil</h3>
+            <p>Clientes actuales pueden usar el botón de WhatsApp para consultas rápidas o envío de documentos.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">05 / 10</span>
+    </div>
+  </div></div>
+
+  <div class="slide" data-slide="7"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">06 · NUESTROS DIFERENCIALES</span>
+      <h2 class="s-title">Su Socio <span class="gt">Contable</span> de Confianza</h2>
+      <p class="s-subtitle">Valores y atributos que distinguen a Contadores del Oriente en el mercado.</p>
+      <div class="two-big-cards">
+        <div class="card">
+          <div class="icon-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+            <h3>Experiencia y Trayectoria</h3>
+          </div>
+          <ul>
+            <li><strong>14 años de experiencia:</strong> Con un sólido historial en Bucaramanga.</li>
+            <li><strong>70+ empresas atendidas:</strong> De forma recurrente, avalando nuestra calidad.</li>
+            <li><strong>Equipo de titulados:</strong> Contadores públicos certificados, no solo auxiliares.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="icon-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+            <h3>Soporte y Eficiencia</h3>
+          </div>
+          <ul>
+            <li><strong>Acompañamiento todo el año:</strong> No solo en temporada de declaración.</li>
+            <li><strong>Respuesta ágil:</strong> A consultas en menos de 24 horas hábiles.</li>
+            <li><strong>Asesoría integral:</strong> Cubriendo contabilidad, impuestos y nómina.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">06 / 10</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="8"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">07 · INVERSIÓN Y PLAZOS DEL PROYECTO</span>
+      <h2 class="s-title">Una Inversión <span class="gt">Estratégica</span> en su Futuro Digital</h2>
+      <p class="s-subtitle">Detalle de la inversión y el cronograma para su nueva plataforma web.</p>
+      <div class="investment-section">
+        <div class="investment-item">
+          <h3>Inversión en el Proyecto Web: <span class="value-label">Valor por definir</span></h3>
+          <p>La inversión total se definirá en función de las funcionalidades exactas, la complejidad del diseño y la integración de herramientas específicas para la gestión de citas y documentos.</p>
+        </div>
+        <div class="investment-item">
+          <h3>Plazo de Entrega: <span class="value-label">4 semanas</span></h3>
+          <p>Nos comprometemos a tener su página web lista en aproximadamente 4 semanas, para que pueda estar operativa antes de la próxima temporada de declaración de renta.</p>
+        </div>
+        <div class="investment-item">
+          <h3>Modalidad de Pago: <span class="value-label">A definir</span></h3>
+          <p>Las condiciones de pago se acordarán de forma flexible para alinearse con las necesidades de su firma, garantizando una colaboración transparente.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">07 / 10</span>
+    </div>
+  </div></div>
+
+  <div class="slide" data-slide="9"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">08 · PRÓXIMOS PASOS</span>
+      <h2 class="s-title">Construyendo su <span class="gt">Presencia Digital</span></h2>
+      <p class="s-subtitle">Lo que sigue para iniciar este emocionante proyecto.</p>
+      <div class="closing-grid">
+        <div class="closing-steps">
+          <div class="step-connector"></div>
+          <div class="step-item"><span class="step-number">1</span>Revisión de esta propuesta y resolución de sus inquietudes.</div>
+          <div class="step-item"><span class="step-number">2</span>Definición final de las funcionalidades y la inversión del proyecto.</div>
+          <div class="step-item"><span class="step-number">3</span>Firma del acuerdo de servicio y arranque del desarrollo web.</div>
+          <div class="step-item"><span class="step-number">4</span>Lanzamiento de su nueva plataforma digital antes de la temporada de renta.</div>
+        </div>
+        <div class="contact-card">
+          <h3>¡Conversemos sobre su Proyecto!</h3>
+          <p>Estamos listos para potenciar la reputación y eficiencia de Contadores del Oriente.</p>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+57 314 227 8850 (Ricardo Alfonso Melo Vega)</span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>ricardo.melo@contadoresdeloriente.com</span>
+          </div>
+          <a href="https://wa.me/573142278850" target="_blank" class="cta-button">¡Hablemos en WhatsApp!</a>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">08 / 10</span>
+    </div>
+  </div></div>
+
+  <div class="slide" data-slide="10"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Contadores del Oriente</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">09 · AGRADECIMIENTO</span>
+      <h2 class="s-title">Gracias por su <span class="gt">Confianza</span></h2>
+      <p class="s-subtitle">Valoramos la oportunidad de impulsar la reputación y eficiencia de su firma contable.</p>
+      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: calc(100% - 150px); text-align: center; gap: 30px;">
+        <p style="font-family: var(--font-display); font-weight: 700; font-size: 38px; line-height: 1.3; color: var(--text-hi);">
+          Estamos convencidos de que una <span class="gt">presencia digital sólida</span><br>
+          es clave para el éxito de su firma.
+        </p>
+        <p style="font-family: var(--font-body); font-weight: 500; font-size: 22px; color: var(--text-mid);">
+          Esperamos poder acompañarlos en este importante proyecto.
+        </p>
+        <a href="https://wa.me/573142278850" target="_blank" class="cta-button" style="padding: 15px 40px; font-size: 18px;">
+          Coordinar una Presentación Detallada
+        </a>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Contadores del Oriente</span>
+      <span class="page-number">09 / 10</span>
+    </div>
+  </div></div>
+  
+</div></section></main>
 <footer class="slides-footer-controls">
-    <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-    <div class="slide-indicator"><span id="slide-number-display">1 / 9</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
-    <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+  <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+  <div class="slide-indicator"><span id="slide-number-display">1 / 10</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+  <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
 </footer>
 
 <script>
-    const state={currentSlide:1,totalSlides:9};
-    function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
-    function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
-    function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
-    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
-    window.addEventListener('resize',resizeSlideStage);
-    function ajustarAutofit(){document.querySelectorAll('.s-body,.cover-body,.cover__body').forEach(el=>{el.style.paddingTop='';el.style.display='';el.style.flexDirection='';el.style.justifyContent='';el.style.rowGap='';el.style.zoom=1;let z=1;while(el.scrollHeight>el.clientHeight&&z>0.62){z-=0.03;el.style.zoom=z.toFixed(2);}if(el.scrollHeight<el.clientHeight){const hueco=el.clientHeight-el.scrollHeight;const n=el.children.length;if(hueco>32&&n>1){el.style.display='flex';el.style.flexDirection='column';el.style.justifyContent='flex-start';el.style.rowGap=Math.min(Math.round(hueco/(n-1)),44)+'px';}else if(hueco>32){el.style.paddingTop=Math.round(hueco/2)+'px';}}});document.querySelectorAll('.cover__topbar,.cover-topbar').forEach(el=>{el.style.position='static';el.style.inset='auto';el.style.display='flex';el.style.width='100%';el.style.maxWidth='100%';el.style.justifyContent='space-between';el.style.alignItems='center';el.style.boxSizing='border-box';});}
-    window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{setTimeout(ajustarAutofit,50);});});
-    window.addEventListener('load',()=>{resizeSlideStage();setTimeout(ajustarAutofit,50);});
+const state={currentSlide:1,totalSlides:10};
+function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
+function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
+function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();ajustarAutofit();}
+function ajustarAutofit(){document.querySelectorAll('.s-body,.cover-body,.cover__body').forEach(el=>{
+    el.querySelectorAll('*').forEach(c=>{if(c.scrollHeight>c.clientHeight+2){const h=getComputedStyle(c).height;if(h!=='auto'&&!isNaN(parseFloat(h))){c.style.height='auto';c.style.maxHeight='none';}}});
+    el.style.paddingTop='';el.style.display='';el.style.flexDirection='';el.style.justifyContent='';el.style.rowGap='';el.style.zoom=1;let z=1;while(el.scrollHeight>el.clientHeight&&z>0.62){z-=0.03;el.style.zoom=z.toFixed(2);}if(el.scrollHeight<el.clientHeight){const hueco=el.clientHeight-el.scrollHeight;const n=el.children.length;if(hueco>32&&n>1){const gapCount=n-1;const gap=Math.min(Math.round(hueco/gapCount),44);const resto=hueco-gap*gapCount;el.style.display='flex';el.style.flexDirection='column';el.style.justifyContent='flex-start';el.style.rowGap=gap+'px';if(resto>16){el.style.paddingTop=Math.round(resto/2)+'px';}}else if(hueco>32){el.style.paddingTop=Math.round(hueco/2)+'px';}}});document.querySelectorAll('.cover__topbar,.cover-topbar').forEach(el=>{el.style.position='static';el.style.inset='auto';el.style.display='flex';el.style.width='100%';el.style.maxWidth='100%';el.style.justifyContent='space-between';el.style.alignItems='center';el.style.boxSizing='border-box';});}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
+window.addEventListener('resize',resizeSlideStage);
+window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{setTimeout(ajustarAutofit,50);});});
+window.addEventListener('load',()=>{setTimeout(ajustarAutofit,50);});
 </script>
 </body>
 </html>
