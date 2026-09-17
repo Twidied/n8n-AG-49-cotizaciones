@@ -1,1 +1,51 @@
-<!DOCTYPE html><html><body>Pendiente</body></html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propuesta Comercial - Clínica Veterinaria Huellitas Felices</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* RESET OBLIGATORIO */
+        *{box-sizing:border-box;margin:0;padding:0}
+
+        /* TOKENS DE COLOR Y FUENTES PERSONALIZADOS PARA VERDE ESMERALDA */
+        :root{
+            /* Base Campuslands */
+            --bg-0:#F2F3F5;--bg-1:#E9EBEF;--bg-2:#FFFFFF;--bg-deep:#E2E4E9;
+            --text-hi:#14161B;--text-mid:#3D4451;--text-lo:#6B7280;--text-faint:#9CA3AF;
+            --card-border:rgba(20,25,35,.10);--dot-confidential:#C98A00;--radius:14px;
+
+            /* Colores de Marca Cliente (Verde Esmeralda) remapeados */
+            --cyan:#138871; /* Emerald base */
+            --blue:#1AA78F; /* Lighter emerald for gradient transition */
+            --violet:#0F6B58; /* Deeper emerald for gradient transition */
+            --magenta:#0A4F41; /* Darkest emerald for gradient end */
+
+            /* Gradiente de Marca Cliente */
+            --grad-brand:linear-gradient(100deg,#138871 0%,#1AA78F 38%,#0F6B58 72%,#0A4F41 100%);
+
+            /* Glows de Marca Cliente */
+            --bg-glow-a:rgba(19,136,113,.09); /* From --cyan */
+            --bg-glow-b:rgba(10,79,65,.09); /* From --magenta */
+
+            /* Mezcla de Fondo (Mantener estructura Campuslands pero con nuevos glows) */
+            --bg-wash:linear-gradient(135deg,rgba(19,136,113,.06) 0%,rgba(26,167,143,.05) 32%,rgba(15,107,88,.05) 66%,rgba(10,79,65,.07) 100%);
+
+            /* Fuentes */
+            --font-display:'Playfair Display',serif;
+            --font-body:'Poppins',sans-serif;
+            --font-label:'Montserrat',sans-serif;
+        }
+
+        /* SHELL CSS */
+        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+        .wordmark{font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);
