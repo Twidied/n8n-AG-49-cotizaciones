@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propuesta - Taller Automotriz Rodriguez Hermanos</title>
+<title>Propuesta - Estudio Jurídico Mantilla & Asociados</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -25,19 +25,19 @@
   --font-body:'Poppins',sans-serif;
   --font-label:'Montserrat',sans-serif;
 
-  /* Client-specific colors: Red and Charcoal Grey */
-  --client-red:#D62F2F; /* Main Red for accent */
-  --client-charcoal:#3D3D3D; /* Main Charcoal Grey for accent */
+  /* Client-specific colors: Navy Blue and Gold */
+  --client-navy:#0F2C5C; /* Main Navy Blue for accent */
+  --client-gold:#B8860B; /* Main Gold for accent */
 
   /* Mapped tokens */
-  --cyan:var(--client-charcoal);
-  --blue:color-mix(in srgb, var(--client-charcoal) 70%, var(--client-red) 30%); /* A darker mid-grey/red blend */
-  --violet:color-mix(in srgb, var(--client-red) 70%, var(--client-charcoal) 30%); /* A darker red/charcoal blend */
-  --magenta:var(--client-red);
-  --grad-brand:linear-gradient(100deg, var(--client-charcoal) 0%, #5C5C5C 38%, #9E2F2F 72%, var(--client-red) 100%);
-  --bg-glow-a:rgba(214, 47, 47, .09); /* Transparent red glow */
-  --bg-glow-b:rgba(61, 61, 61, .09); /* Transparent charcoal glow */
-  --bg-wash:linear-gradient(135deg,rgba(214,47,47,.06) 0%,rgba(61,61,61,.05) 32%,rgba(214,47,47,.05) 66%,rgba(61,61,61,.07) 100%);
+  --cyan:var(--client-navy);
+  --blue:color-mix(in srgb, var(--client-navy) 70%, var(--client-gold) 30%); /* A darker blue/gold blend */
+  --violet:color-mix(in srgb, var(--client-gold) 70%, var(--client-navy) 30%); /* A darker gold/blue blend */
+  --magenta:var(--client-gold);
+  --grad-brand:linear-gradient(100deg, var(--client-navy) 0%, #30578C 38%, #8E6D24 72%, var(--client-gold) 100%);
+  --bg-glow-a:rgba(15, 44, 92, .09); /* Transparent navy glow */
+  --bg-glow-b:rgba(184, 134, 11, .09); /* Transparent gold glow */
+  --bg-wash:linear-gradient(135deg,rgba(15,44,92,.06) 0%,rgba(184,134,11,.05) 32%,rgba(15,44,92,.05) 66%,rgba(184,134,11,.07) 100%);
 }
 
 body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
@@ -82,6 +82,8 @@ body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);fo
 .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
 
 /* Content patterns */
+.autofit{overflow:hidden;height:100%}
+
 .list-dots{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5;color:var(--text-mid)}
 .list-dots li{position:relative;padding-left:24px}
 .list-dots li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--magenta);border-radius:50%}
@@ -102,43 +104,39 @@ body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);fo
 .grid-cards-3 .card h3{font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--text-hi);margin-bottom:6px}
 .grid-cards-3 .card p{font-size:14px;line-height:1.5;color:var(--text-mid)}
 
-.two-big-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px;height:100%;align-items:center}
-.two-big-cards .card{padding:30px}
-.two-big-cards .card .icon-title{display:flex;align-items:center;gap:15px;margin-bottom:20px}
-.two-big-cards .card .icon-title svg{width:38px;height:38px;color:var(--client-red)}
-.two-big-cards .card .icon-title h3{font-family:var(--font-display);font-weight:700;font-size:28px;margin:0;color:var(--text-hi)}
-.two-big-cards .card ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:10px}
-.two-big-cards .card ul li{font-size:16px;line-height:1.5;color:var(--text-mid);position:relative;padding-left:28px}
-.two-big-cards .card ul li::before{content:"✔";position:absolute;left:0;color:var(--magenta);font-size:18px;top:0}
+.grid-cards-2-rows{display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:24px;margin-top:20px;height:calc(100% - 150px);} /* Ajuste para autofit */
+.grid-cards-2-rows .card{padding:20px}
+.grid-cards-2-rows .card h3{font-family:var(--font-label);font-weight:700;font-size:16px;letter-spacing:.02em;text-transform:uppercase;color:var(--text-hi);margin-bottom:6px}
+.grid-cards-2-rows .card p{font-size:14px;line-height:1.5;color:var(--text-mid)}
+.grid-cards-2-rows .card ul{list-style:none;padding-left:0;margin-top:10px}
+.grid-cards-2-rows .card ul li{font-size:14px;line-height:1.4;color:var(--text-mid);position:relative;padding-left:20px;margin-bottom:6px}
+.grid-cards-2-rows .card ul li::before{content:"—";position:absolute;left:0;color:var(--client-gold);font-weight:bold}
+
 
 .content-section{font-size:17px;line-height:1.6;color:var(--text-mid);margin-bottom:20px}
 .content-section strong{color:var(--text-hi)}
 .content-section ul{list-style:none;padding-left:0;margin-top:10px}
 .content-section ul li{position:relative;padding-left:20px;margin-bottom:8px}
-.content-section ul li::before{content:"—";position:absolute;left:0;color:var(--client-charcoal);font-weight:bold}
+.content-section ul li::before{content:"—";position:absolute;left:0;color:var(--client-navy);font-weight:bold}
 
 .investment-section{display:flex;flex-direction:column;gap:25px;margin-top:30px}
 .investment-item{display:flex;flex-direction:column;gap:8px;padding-left:15px;border-left:3px solid var(--card-border)}
-.investment-item h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--client-charcoal);margin:0}
+.investment-item h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--client-navy);margin:0}
 .investment-item p{font-size:17px;line-height:1.6;color:var(--text-mid)}
 .investment-item h3 .value-label{font-size:20px;font-weight:600;color:var(--text-lo);margin-left:10px}
 
 .closing-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;height:100%;align-items:center}
 .closing-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:20px}
 .closing-steps .step-item{display:flex;align-items:center;gap:15px;font-size:18px;line-height:1.5;color:var(--text-mid);position:relative}
-.closing-steps .step-item .step-number{width:32px;height:32px;background:var(--client-charcoal);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;flex-shrink:0;z-index:2}
+.closing-steps .step-item .step-number{width:32px;height:32px;background:var(--client-navy);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;flex-shrink:0;z-index:2}
 .closing-steps .step-connector{position:absolute;left:35px;top:40px;bottom:40px;width:2px;background:var(--card-border);z-index:1}
 .contact-card{background:var(--bg-2);border-left:5px solid var(--grad-brand);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
 .contact-card h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--text-hi);margin-bottom:10px}
 .contact-card p{font-size:17px;line-height:1.5;color:var(--text-mid)}
 .contact-card .contact-detail{display:flex;align-items:center;gap:12px;font-size:17px;color:var(--text-hi)}
-.contact-card .contact-detail svg{width:24px;height:24px;color:var(--client-red)}
+.contact-card .contact-detail svg{width:24px;height:24px;color:var(--client-gold)}
 .contact-card .cta-button{display:inline-block;margin-top:20px;padding:12px 28px;background:var(--grad-brand);color:white;font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.05em;text-decoration:none;border-radius:99px;text-align:center;transition:transform .2s ease}
 .contact-card .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
-
-
-/* Utility classes */
-.mb-20{margin-bottom:20px}
 
 </style>
 </head>
@@ -153,14 +151,14 @@ body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);fo
     </div>
     <div class="cover-body">
       <span class="eyebrow">PROPUESTA DE VALOR</span>
-      <h1 class="title">Potenciando tu <span class="gt">Presencia Digital</span></h1>
-      <p class="subtitle">Un catálogo de servicios en línea para Taller Automotriz Rodriguez Hermanos</p>
-      <h2 class="client-name">PARA Taller Automotriz Rodriguez Hermanos</h2>
+      <h1 class="title">Una <span class="gt">Presencia Digital</span> Sólida</h1>
+      <p class="subtitle">Creando una vitrina profesional para Estudio Jurídico Mantilla & Asociados</p>
+      <h2 class="client-name">PARA Estudio Jurídico Mantilla & Asociados</h2>
     </div>
     <div class="cover-meta">
       <div>
         <label>Preparado para</label>
-        <span>Sr. Camilo Rodríguez, Gerente General</span>
+        <span>Dra. Marcela Mantilla, Socia Fundadora</span>
       </div>
       <div>
         <label>Preparado por</label>
@@ -180,263 +178,336 @@ body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);fo
   <div class="slide" data-slide="2"><div class="slide-inner internal glow-a">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
       <span class="eyebrow">01 · DIAGNÓSTICO ACTUAL</span>
-      <h2 class="s-title">El Desafío: Sin <span class="gt">Vitrina Digital</span></h2>
-      <p class="s-subtitle">La situación actual limita el crecimiento y la visibilidad de su negocio.</p>
+      <h2 class="s-title">El Desafío: Sin <span class="gt">Vitrina Digital</span> Formal</h2>
+      <p class="s-subtitle">La ausencia en línea limita el crecimiento y la confianza de potenciales clientes.</p>
+      <div class="autofit">
       <ul class="list-dots">
-        <li>Ausencia total de presencia en línea, limitando el alcance a la cercanía física y referencias.</li>
-        <li>Pérdida de oportunidades frente a competidores con redes sociales y catálogos visibles.</li>
-        <li>Imposibilidad para nuevos clientes de conocer servicios, precios de referencia o la experiencia del taller.</li>
-        <li>Dependencia exclusiva del "boca a boca", un canal efectivo pero no escalable.</li>
+        <li>Dependencia exclusiva de referidos y contactos personales para la captación de clientes.</li>
+        <li>Imposibilidad para potenciales clientes de investigar áreas de práctica y trayectoria.</li>
+        <li>Genera desconfianza en quienes buscan referencias antes de contratar servicios legales.</li>
+        <li>No hay un canal formal para agendar consultas iniciales fácilmente.</li>
       </ul>
+      </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">01 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">01 / 08</span>
     </div>
   </div></div>
   
   <div class="slide" data-slide="3"><div class="slide-inner internal glow-b">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
       <span class="eyebrow">02 · NUESTRA PROPUESTA</span>
-      <h2 class="s-title">Una <span class="gt">Vitrina Digital</span> de Confianza</h2>
-      <p class="s-subtitle">Desarrollo de una página web de una sola vista para potenciar su alcance y credibilidad.</p>
+      <h2 class="s-title">Una Presencia Digital <span class="gt">Confiable y Profesional</span></h2>
+      <p class="s-subtitle">Desarrollo de una página web sobria y funcional para proyectar su experticia.</p>
       <div class="split-2-cols">
         <div class="col-left">
-          <p>Creamos una presencia digital sólida que refleje la trayectoria y el profesionalismo de Taller Automotriz Rodriguez Hermanos. Una página web intuitiva y de rápida carga, diseñada para ser su primera impresión en línea y principal punto de contacto.</p>
-          <p>La estructura de una sola vista asegura que toda la información relevante esté a un scroll de distancia, facilitando la navegación y el acceso instantáneo a lo que el cliente necesita.</p>
+          <p>Creamos una página web de una sola vista que actúa como su carta de presentación digital. Un diseño elegante y serio que refleja la trayectoria de 20 años y la seriedad de Estudio Jurídico Mantilla & Asociados, alineado con sus colores institucionales (azul marino y dorado).</p>
+          <p>El objetivo es generar confianza, informar sobre sus áreas de práctica y facilitar el agendamiento de consultas, transformando la navegación web en un paso directo hacia la asesoría legal.</p>
         </div>
         <div class="col-right">
+          <div class="autofit">
           <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-            <span>**Conectividad Directa:** Botón de WhatsApp siempre visible para cotizaciones y citas.</span>
+            <span>**Contacto Directo:** Botón de WhatsApp para agendar consultas de forma sencilla.</span>
           </div>
           <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            <span>**Credibilidad Instantánea:** Destacando 15 años de experiencia y la calidad de sus servicios.</span>
-          </div>
-          <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-            <span>**Visibilidad Ampliada:** Atrae nuevos clientes más allá de la ubicación física.</span>
+            <span>**Visibilidad Profesional:** Presentación clara de áreas de práctica y equipo legal.</span>
           </div>
           <div class="feature-item">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
-            <span>**Información Clara:** Acceso fácil a servicios, horarios y preguntas frecuentes.</span>
+            <span>**Información Relevante:** Datos sobre la trayectoria y diferenciales del estudio.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path></svg>
+            <span>**Credibilidad Reforzada:** Un canal oficial que proyecta confianza y seriedad.</span>
+          </div>
           </div>
         </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">02 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">02 / 08</span>
     </div>
   </div></div>
   
   <div class="slide" data-slide="4"><div class="slide-inner internal glow-a">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
       <span class="eyebrow">03 · MÓDULOS Y CONTENIDOS</span>
-      <h2 class="s-title">La Experiencia <span class="gt">Digital</span> Completa</h2>
-      <p class="s-subtitle">Cada sección de la página web, diseñada para informar y generar confianza.</p>
+      <h2 class="s-title">Nuestras <span class="gt">Áreas de Especialidad</span></h2>
+      <p class="s-subtitle">Un recorrido por los servicios legales que ofrece el estudio, con descripciones claras.</p>
       <div class="grid-cards-3">
         <div class="card bordered-top">
-          <h3>Bienvenida y Trayectoria</h3>
-          <p>Presentación del taller, sus 15 años de historia y su compromiso con la calidad en el servicio.</p>
+          <h3>Derecho Civil</h3>
+          <p>Asesoría y representación en contratos, propiedades, sucesiones y responsabilidades civiles.</p>
         </div>
         <div class="card bordered-top">
-          <h3>Nuestros Servicios</h3>
-          <p>Detalle claro y conciso de cada servicio ofrecido: diagnóstico, frenos, mecánica general, etc.</p>
+          <h3>Derecho Laboral</h3>
+          <p>Soluciones para relaciones laborales, contratos, despidos y litigios entre empleados y empleadores.</p>
         </div>
         <div class="card bordered-top">
-          <h3>Nuestros Diferenciales</h3>
-          <p>Técnicos certificados, equipos de última generación, garantía escrita y servicio de grúa.</p>
+          <h3>Derecho Comercial</h3>
+          <p>Constitución de sociedades, contratos mercantiles, fusiones y adquisiciones, propiedad intelectual.</p>
         </div>
         <div class="card bordered-top">
-          <h3>Testimonios de Clientes</h3>
-          <p>Sección dedicada a la validación social y la confianza de clientes satisfechos con el servicio.</p>
+          <h3>Derecho de Familia</h3>
+          <p>Divorcios, uniones maritales, alimentos, custodias, adopciones y procesos de filiación.</p>
         </div>
         <div class="card bordered-top">
-          <h3>Horarios y Ubicación</h3>
-          <p>Información práctica de atención, dirección, y mapa de cómo llegar al taller en Girón.</p>
+          <h3>Propiedad Horizontal</h3>
+          <p>Asesoría a copropiedades, conflictos entre vecinos, reglamentos y gestión jurídica de edificios.</p>
         </div>
         <div class="card bordered-top">
-          <h3>Preguntas Frecuentes (FAQ)</h3>
-          <p>Respuestas a dudas comunes sobre marcas de vehículos, garantía y métodos de pago aceptados.</p>
+          <h3>Cobro Jurídico</h3>
+          <p>Recuperación de cartera, gestión de cobro pre-jurídico y judicial para empresas y personas.</p>
         </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">03 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">03 / 08</span>
     </div>
   </div></div>
   
   <div class="slide" data-slide="5"><div class="slide-inner internal glow-b">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
-      <span class="eyebrow">04 · ATRIBUTOS CLAVE</span>
-      <h2 class="s-title">Su <span class="gt">Marca</span>, Nuestro Foco</h2>
-      <p class="s-subtitle">Destacamos los pilares que hacen único a Taller Automotriz Rodríguez Hermanos.</p>
-      <div class="two-big-cards">
-        <div class="card">
-          <div class="icon-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
-            <h3>Excelencia Comprobada</h3>
-          </div>
+      <span class="eyebrow">04 · NUESTRO EQUIPO Y VALOR</span>
+      <h2 class="s-title">La <span class="gt">Experiencia</span> que nos Distingue</h2>
+      <p class="s-subtitle">Conozca los pilares de nuestro estudio jurídico y el valor que aportamos a cada caso.</p>
+      <div class="grid-cards-2-rows">
+        <div class="card bordered-top">
+          <h3>Nuestros Diferenciales</h3>
+          <div class="autofit">
           <ul>
-            <li>+9.000 vehículos atendidos con éxito desde la apertura del taller.</li>
-            <li>Calificación promedio de 4.7/5 en reseñas de Google, un reflejo de satisfacción.</li>
-            <li>15 años de trayectoria en el sector automotriz, sinónimo de experiencia y confianza.</li>
+            <li>Equipo de abogados especializados por área de práctica.</li>
+            <li>Atención personalizada y seguimiento detallado de cada caso.</li>
+            <li>Respuesta ágil en la primera consulta para resolver sus dudas.</li>
+            <li>Confidencialidad absoluta garantizada en todo proceso legal.</li>
+            <li>Más de 1.200 casos gestionados exitosamente en 20 años.</li>
           </ul>
+          </div>
         </div>
-        <div class="card">
-          <div class="icon-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
-            <h3>Equipo y Soporte Premium</h3>
-          </div>
+        <div class="card bordered-top">
+          <h3>Socios Principales</h3>
+          <div class="autofit">
           <ul>
-            <li>5 técnicos mecánicos certificados que garantizan un servicio experto y confiable.</li>
-            <li>Garantía por escrito en repuestos y mano de obra para su total tranquilidad.</li>
-            <li>Equipo de diagnóstico computarizado de última generación, para precisión en cada servicio.</li>
-            <li>Servicio de grúa en caso de emergencia, brindando un soporte completo.</li>
+            <li>**Dra. Marcela Mantilla:** Socia Fundadora, Derecho Civil. Más de 20 años de experiencia.</li>
+            <li>**Dr. Ricardo Rojas:** Socio, Derecho Laboral. 15 años de trayectoria.</li>
+            <li>**Dra. Sofía Pérez:** Socia, Derecho Comercial. 12 años de experiencia.</li>
           </ul>
+          </div>
+        </div>
+        <div class="card bordered-top">
+          <h3>Cifras Clave</h3>
+          <div class="autofit">
+          <ul>
+            <li>**20 Años** de experiencia en el mercado legal.</li>
+            <li>**+1.200 Casos** gestionados exitosamente.</li>
+            <li>**4.9/5** calificación promedio en Google.</li>
+            <li>**6 Abogados** especializados vinculados.</li>
+            <li>Horario: L-V 8:00 a.m. - 5:30 p.m. (cita previa).</li>
+          </ul>
+          </div>
+        </div>
+        <div class="card bordered-top">
+          <h3>Preguntas Frecuentes (FAQ)</h3>
+          <div class="autofit">
+          <ul>
+            <li>¿Cómo se cobra la primera consulta?</li>
+            <li>¿Manejan casos fuera de Bucaramanga?</li>
+            <li>¿Qué documentos debo llevar a la primera cita?</li>
+          </ul>
+          </div>
         </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">04 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">04 / 08</span>
     </div>
   </div></div>
   
   <div class="slide" data-slide="6"><div class="slide-inner internal glow-a">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
       <span class="eyebrow">05 · NUESTRO VALOR AÑADIDO</span>
-      <h2 class="s-title">La <span class="gt">Experiencia</span> Campuslands</h2>
-      <p class="s-subtitle">Su aliado estratégico para una presencia digital efectiva y con impacto.</p>
+      <h2 class="s-title">La <span class="gt">Excelencia</span> en Soluciones Digitales</h2>
+      <p class="s-subtitle">Su aliado estratégico para una presencia digital que refleja la calidad de su estudio.</p>
+      <div class="autofit">
       <div class="content-section">
-        <p>En Campuslands Full Service, entendemos la importancia de una presencia digital que no solo informe, sino que también genere negocio. Nuestro compromiso se enfoca en:</p>
+        <p>En Campuslands Full Service, comprendemos que un estudio jurídico requiere una imagen digital que inspire profesionalismo y confianza. Nuestra propuesta se fundamenta en:</p>
         <ul>
-          <li><strong>Enfoque en Resultados:</strong> Diseñamos su vitrina digital pensando en la conversión y el contacto directo vía WhatsApp para agilizar sus procesos de captación.</li>
-          <li><strong>Diseño de Impacto:</strong> Creamos una interfaz robusta, seria y confiable, utilizando sus colores institucionales (rojo y gris carbón) para comunicar la solidez técnica de su marca.</li>
-          <li><strong>Agilidad y Eficiencia:</strong> Nos comprometemos a una implementación ágil para cumplir con su plazo de "la próxima semana", sin comprometer la calidad ni el detalle.</li>
-          <li><strong>Soporte Dedicado:</strong> Ofrecemos acompañamiento continuo para asegurar que su presencia digital no solo se lance, sino que también evolucione y se mantenga relevante con su negocio.</li>
+          <li><strong>Diseño de Vanguardia:</strong> Creamos una plataforma digital que encapsula la elegancia y seriedad de su firma, utilizando sus colores institucionales (azul marino y dorado) para un diseño robusto y distintivo.</li>
+          <li><strong>Comunicación Efectiva:</strong> Estructuramos el contenido para que las áreas de práctica, la trayectoria y los diferenciales de su estudio sean fácilmente accesibles y comprensibles.</li>
+          <li><strong>Enfoque Práctico:</strong> Integramos funcionalidades clave, como el botón de WhatsApp, para convertir el interés de los visitantes en acciones concretas, facilitando el agendamiento de citas.</li>
+          <li><strong>Agilidad y Cumplimiento:</strong> Nos comprometemos a entregar la página en las próximas dos semanas, garantizando la calidad y la coherencia con su renovación de tarjetas de presentación.</li>
         </ul>
+      </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">05 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">05 / 08</span>
     </div>
   </div></div>
   
   <div class="slide" data-slide="7"><div class="slide-inner internal glow-b">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
       <span class="eyebrow">06 · INVERSIÓN Y PLAZOS</span>
-      <h2 class="s-title"><span class="gt">Diseño</span> a la Medida</h2>
-      <p class="s-subtitle">Nuestra propuesta se adapta a sus necesidades, con un compromiso claro de plazos.</p>
+      <h2 class="s-title"><span class="gt">Compromiso</span> de Valor y Tiempo</h2>
+      <p class="s-subtitle">Una inversión estratégica para la modernización y expansión de su estudio jurídico.</p>
       <div class="investment-section">
+        <div class="autofit">
         <div class="investment-item">
           <h3>Inversión: <span class="value-label">Valor por definir</span></h3>
-          <p>Estamos listos para ajustar nuestra propuesta económica a sus expectativas, garantizando la máxima calidad y un retorno significativo sobre su inversión. Nos enfocamos en ofrecer soluciones de valor duradero.</p>
+          <p>Estamos disponibles para una reunión donde presentaremos una propuesta económica detallada y adaptada a la complejidad y necesidades específicas de su estudio, garantizando el mejor valor por su inversión.</p>
         </div>
         <div class="investment-item">
-          <h3>Plazo de Entrega: <span class="value-label">Próxima semana</span></h3>
-          <p>Nos comprometemos a una entrega ágil en la próxima semana, tal como solicitado, para que su vitrina digital esté operativa rápidamente y pueda integrarse en sus facturas y señalización exterior.</p>
+          <h3>Plazo de Entrega: <span class="value-label">Próximas dos semanas</span></h3>
+          <p>Nos comprometemos a tener la página web lista en el plazo esperado de las próximas dos semanas, en sincronía con la renovación de sus tarjetas de presentación.</p>
         </div>
         <div class="investment-item">
           <h3>Modalidad de Pago: <span class="value-label">A definir</span></h3>
-          <p>Las condiciones de pago se establecerán de común acuerdo una vez definidos el alcance final y el valor de la inversión, buscando la flexibilidad y conveniencia para su negocio.</p>
+          <p>Las condiciones de pago se acordarán de manera flexible, buscando facilitar la implementación de este proyecto clave para su estudio.</p>
+        </div>
         </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">06 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">06 / 08</span>
     </div>
   </div></div>
-  
+
   <div class="slide" data-slide="8"><div class="slide-inner internal glow-a">
     <div class="s-header">
       <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
     </div>
     <div class="s-body">
-      <span class="eyebrow">07 · PRÓXIMOS PASOS</span>
-      <h2 class="s-title">Conversemos para <span class="gt">Avanzar</span></h2>
-      <p class="s-subtitle">Estamos listos para dar el siguiente paso hacia su nueva presencia digital.</p>
-      <div class="closing-grid">
-        <div class="closing-steps">
-          <div class="step-connector"></div>
-          <div class="step-item"><span class="step-number">1</span>Revisión de esta propuesta y resolución de cualquier inquietud.</div>
-          <div class="step-item"><span class="step-number">2</span>Definición de la inversión y firma del acuerdo de servicio.</div>
-          <div class="step-item"><span class="step-number">3</span>Inicio inmediato del desarrollo para cumplir con el plazo.</div>
-          <div class="step-item"><span class="step-number">4</span>Lanzamiento y puesta en marcha de su nueva vitrina digital.</div>
+      <span class="eyebrow">07 · POR QUÉ ELEGIRNOS</span>
+      <h2 class="s-title">El Socio <span class="gt">Ideal</span> para su Estudio</h2>
+      <p class="s-subtitle">Beneficios de colaborar con Campuslands Full Service para su proyecto.</p>
+      <div class="grid-2-cols" style="margin-top: 30px; height: calc(100% - 150px);">
+        <div class="card bordered-top">
+          <h3>Diseño Exclusivo</h3>
+          <div class="autofit">
+          <p>Creamos un sitio web que no solo se ve profesional y elegante, sino que también está optimizado para dispositivos móviles y refleja la seriedad de su marca con sus colores institucionales.</p>
+          </div>
         </div>
-        <div class="contact-card">
-          <h3>¡Iniciemos su Transformación Digital!</h3>
-          <p>Esperamos con entusiasmo la oportunidad de trabajar juntos en este proyecto. No dude en contactarnos para discutir cualquier detalle o ajustar la propuesta a sus necesidades.</p>
-          <div class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span>+57 315 782 4410 (Sr. Camilo Rodríguez)</span>
+        <div class="card bordered-top">
+          <h3>Experiencia Comprobada</h3>
+          <div class="autofit">
+          <p>Contamos con la experiencia en desarrollar soluciones digitales efectivas para profesionales y empresas, entendiendo las particularidades del sector legal para generar confianza y credibilidad.</p>
           </div>
-          <div class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span>contacto@rodriguezhermanos.co</span>
+        </div>
+        <div class="card bordered-top">
+          <h3>Comunicación Fluida</h3>
+          <div class="autofit">
+          <p>Aseguramos un proceso de desarrollo transparente y colaborativo, manteniéndolo informado en cada etapa para que el resultado final supere sus expectativas.</p>
           </div>
-          <a href="https://wa.me/573157824410" target="_blank" class="cta-button">¡Hablemos en WhatsApp!</a>
+        </div>
+        <div class="card bordered-top">
+          <h3>Orientación a Resultados</h3>
+          <div class="autofit">
+          <p>Nuestro objetivo es que su nueva página web no sea solo una vitrina, sino una herramienta efectiva para la captación de clientes y la optimización de su proceso de consulta.</p>
+          </div>
         </div>
       </div>
     </div>
     <div class="s-footer">
       <span>Campuslands Full Service</span>
-      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
-      <span class="page-number">07 / 07</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">07 / 08</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="9"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Estudio Jurídico Mantilla & Asociados</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">08 · PRÓXIMOS PASOS</span>
+      <h2 class="s-title">Conversemos para <span class="gt">Avanzar</span></h2>
+      <p class="s-subtitle">Estamos listos para dar el siguiente paso hacia la modernización digital de su estudio.</p>
+      <div class="closing-grid">
+        <div class="closing-steps">
+          <div class="step-connector"></div>
+          <div class="step-item"><span class="step-number">1</span>Revisión de esta propuesta y resolución de sus inquietudes.</div>
+          <div class="step-item"><span class="step-number">2</span>Definición final de la inversión y firma del acuerdo de servicio.</div>
+          <div class="step-item"><span class="step-number">3</span>Inicio inmediato del desarrollo de su nueva presencia digital.</div>
+          <div class="step-item"><span class="step-number">4</span>Lanzamiento oficial de su página web profesional.</div>
+        </div>
+        <div class="contact-card">
+          <h3>¡Iniciemos su Transformación Digital!</h3>
+          <p>Esperamos con entusiasmo la oportunidad de potenciar la imagen de Estudio Jurídico Mantilla & Asociados. Contáctenos para conversar sobre los detalles.</p>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+57 312 908 6634 (Dra. Marcela Mantilla)</span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>contacto@mantillaasociados.co</span>
+          </div>
+          <a href="https://wa.me/573129086634" target="_blank" class="cta-button">¡Hablemos en WhatsApp!</a>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Estudio Jurídico Mantilla & Asociados</span>
+      <span class="page-number">08 / 08</span>
     </div>
   </div></div>
   
 </div></section></main>
 <footer class="slides-footer-controls">
   <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-  <div class="slide-indicator"><span id="slide-number-display">1 / 7</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+  <div class="slide-indicator"><span id="slide-number-display">1 / 8</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
   <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
 </footer>
 
 <script>
-const state={currentSlide:1,totalSlides:7};
+const state={currentSlide:1,totalSlides:8};
 function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
 function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
 function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
+function ajustarAutofit(){document.querySelectorAll('.autofit').forEach(el=>{let s=100;while(el.scrollHeight>el.clientHeight&&s>55){s-=4;el.style.fontSize=s+'%';}});resizeSlideStage();updateSlideDisplay();}
 document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
 window.addEventListener('resize',resizeSlideStage);
-window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();});
+window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();ajustarAutofit();});
 </script>
 </body>
 </html>
