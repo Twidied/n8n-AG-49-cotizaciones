@@ -1,556 +1,459 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Propuesta - Tinta Nomada</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotización Campuslands Full Service para Vivero Raices Verdes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        :root{
+            --primary-green: #4DB26E; /* Verde natural */
+            --secondary-golden: #CC9B3B; /* Dorado tierra calido */
 
-:root{
-  /* Base Campuslands Full Service tokens */
-  --bg-0:#F2F3F5;
-  --bg-1:#E9EBEF;
-  --bg-2:#FFFFFF;
-  --bg-deep:#E2E4E9;
-  --text-hi:#14161B;
-  --text-mid:#3D4451;
-  --text-lo:#6B7280;
-  --text-faint:#9CA3AF;
-  --card-border:rgba(20,25,35,.10);
-  --dot-confidential:#C98A00;
-  --radius:14px;
-  --font-display:'Playfair Display',serif;
-  --font-body:'Poppins',sans-serif;
-  --font-label:'Montserrat',sans-serif;
+            --bg-0:#F2F3F5;
+            --bg-1:#E9EBF0;
+            --bg-2:#FFFFFF;
+            --bg-deep:#E2E4E9;
+            --bg-glow-a:rgba(77, 178, 110,.09); /* From primary-green */
+            --bg-glow-b:rgba(204, 155, 59,.09); /* From secondary-golden */
+            --bg-wash:linear-gradient(135deg,rgba(77,178,110,.06) 0%,rgba(77,178,110,.05) 32%,rgba(204,155,59,.05) 66%,rgba(204,155,59,.07) 100%);
+            --text-hi:#14161B;
+            --text-mid:#3D4451;
+            --text-lo:#6B7280;
+            --text-faint:#9CA3AF;
+            --cyan:var(--primary-green);
+            --blue:var(--primary-green); /* Using primary green for general blue accent */
+            --violet:var(--secondary-golden);
+            --magenta:var(--secondary-golden);
+            --grad-brand:linear-gradient(100deg,var(--primary-green) 0%, #40a060 38%,var(--secondary-golden) 72%, #E0B345 100%);
+            --card-border:rgba(20,25,35,.10);
+            --dot-confidential:#C98A00;
+            --radius:14px;
 
-  /* Client-specific colors: Negro, Gris Oscuro, Rojo Sangre */
-  --client-base-dark:#1A1A1A; /* Negro */
-  --client-accent-red:#CC0000; /* Rojo sangre */
+            --font-display:'Playfair Display',serif;
+            --font-body:'Poppins',sans-serif;
+            --font-label:'Montserrat',sans-serif;
+        }
+        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+        .wordmark{font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+        .slide.active{display:block;opacity:1;transform:translateY(0)}
+        .slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+        .control-btn{background:none;border:1px solid rgba(20,25,35,.14);color:var(--text-hi);width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer}
+        .control-btn:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+        .slide-indicator{display:flex;align-items:center;gap:18px;flex:1;max-width:520px;margin:0 26px}
+        #slide-number-display{font-family:var(--font-label);font-weight:600;font-size:12.5px;color:var(--text-mid);min-width:44px;text-align:right}
+        .progress-bar-bg{flex:1;height:6px;background:rgba(20,25,35,.07);border-radius:3px;overflow:hidden}
+        .progress-bar-fill{height:100%;width:10%;background:var(--grad-brand);transition:width .3s ease}
+        .s-body{overflow:hidden}
+        .cover-body,.cover__body{overflow:hidden}
+        svg{display:block}
+        .icon-sm,.icon-md{flex:none}
+        .icon-sm{width:22px;height:22px}
+        .icon-md{width:36px;height:36px}
 
-  /* Mapped Campuslands tokens */
-  --cyan:var(--client-base-dark);
-  --blue:color-mix(in srgb, var(--client-base-dark) 70%, var(--client-accent-red) 30%); /* Dark reddish grey */
-  --violet:color-mix(in srgb, var(--client-accent-red) 70%, var(--client-base-dark) 30%); /* Deeper red */
-  --magenta:var(--client-accent-red); /* Main vibrant red */
-  --grad-brand:linear-gradient(100deg, var(--client-base-dark) 0%, #440000 38%, #880000 72%, var(--client-accent-red) 100%);
-  --bg-glow-a:rgba(204, 0, 0, .09); /* From accent red */
-  --bg-glow-b:rgba(26, 26, 26, .09); /* From base dark */
-  --bg-wash:linear-gradient(135deg,rgba(26,26,26,.06) 0%,rgba(204,0,0,.05) 32%,rgba(26,26,26,.05) 66%,rgba(204,0,0,.07) 100%);
-}
+        /* --- Custom Styles for Proposal --- */
+        .slide-inner.cover{display:grid;grid-template-rows:auto 1fr auto;padding:44px 54px}
+        .cover__topbar{display:flex;justify-content:space-between;align-items:center;width:100%}
+        .cover__body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:20px;overflow:hidden;min-height:0}
+        .cover__body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-mid)}
+        .cover__body .title{font-family:var(--font-display);font-weight:900;font-size:74px;line-height:1.1;color:var(--text-hi)}
+        .cover__body .subtitle{font-family:var(--font-body);font-weight:500;font-size:20px;line-height:1.4;color:var(--text-lo);max-width:80%;margin-top:10px}
+        .cover__body .for-client{font-family:var(--font-label);font-weight:700;font-size:24px;letter-spacing:.04em;color:var(--text-hi);margin-top:30px;padding:12px 28px;background:var(--bg-1);border-radius:var(--radius);border:1px solid var(--card-border)}
 
-body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
-.app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-.app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-.slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-.wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-.badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-.badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-.app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-.slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-.slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
-.slide.active{display:block;opacity:1;transform:translateY(0)}
-.slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+        .cover__meta{width:100%;border-top:1px solid rgba(20,25,35,.10);padding-top:24px;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:left}
+        .cover__meta-item label{font-family:var(--font-label);font-weight:600;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-faint);display:block;margin-bottom:4px}
+        .cover__meta-item span{font-family:var(--font-label);font-weight:700;font-size:13px;color:var(--text-mid);display:block}
 
-/* Slide-specific CSS */
-.slide-inner.cover{display:grid;grid-template-rows:1fr 1.8fr 1fr;padding:0 54px 44px}
-.slide-inner.cover .cover-top{display:flex;justify-content:space-between;align-items:flex-start;padding-top:34px}
-.slide-inner.cover .cover-body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
-.slide-inner.cover .cover-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo)}
-.slide-inner.cover .cover-body .title{font-family:var(--font-display);font-weight:900;font-size:72px;line-height:1.1;color:var(--text-hi)}
-.slide-inner.cover .cover-body .subtitle{font-family:var(--font-body);font-weight:400;font-size:24px;color:var(--text-mid)}
-.slide-inner.cover .cover-body .client-name{font-family:var(--font-display);font-weight:700;font-style:italic;font-size:38px;color:var(--text-hi);margin-top:20px}
-.slide-inner.cover .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;border-top:1px solid rgba(20,25,35,.1);margin-top:auto}
-.slide-inner.cover .cover-meta div{display:flex;flex-direction:column;gap:6px}
-.slide-inner.cover .cover-meta label{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-lo)}
-.slide-inner.cover .cover-meta span{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-mid)}
+        .slide-inner.internal{padding:38px 54px 20px 54px;display:grid;grid-template-rows:38px 1fr 20px;gap:20px}
+        .s-header{display:flex;justify-content:space-between;align-items:center;height:38px;padding-bottom:10px;border-bottom:1px solid rgba(20,25,35,.07)}
+        .s-header .wordmark{font-size:12px;letter-spacing:.08em;color:var(--text-faint)}
+        .s-header .client-name{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
 
-.slide-inner.internal{display:grid;grid-template-rows:auto 1fr auto;padding:34px 54px}
-.slide-inner.internal.glow-a{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
-.slide-inner.internal.glow-b{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-b) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-a) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+        .s-body{overflow:hidden;}
+        .s-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+        .s-body .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;color:var(--text-hi);margin-bottom:24px}
+        .s-body p{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-mid);margin-bottom:16px}
+        .s-body ul{list-style:none;padding-left:0;margin-bottom:16px}
+        .s-body ul li{font-family:var(--font-body);font-size:16px;line-height:1.6;color:var(--text-mid);display:flex;align-items:flex-start;gap:10px;margin-bottom:8px}
+        .s-body ul li strong{color:var(--text-hi)}
+        .s-body ul li .icon-sm{margin-top:4px;color:var(--blue)}
 
-.s-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
-.s-header .wordmark-client{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
-.s-body{overflow:hidden}
-.s-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);margin-bottom:8px}
-.s-body .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;margin-bottom:14px;color:var(--text-hi)}
-.s-body .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--text-mid);margin-bottom:28px}
-.s-footer{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
-.s-footer .page-number{color:var(--magenta)}
+        /* Layout patterns */
+        .grid-2-col{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+        .grid-3-col{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+        .grid-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+        .card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
+        .card.bordered-top{border-top:3px solid transparent;border-image:var(--grad-brand);border-image-slice:1}
+        .card .card-icon{margin-bottom:14px;color:var(--blue)}
+        .card .card-title{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:8px}
+        .card .card-description{font-family:var(--font-body);font-size:15px;line-height:1.5;color:var(--text-lo)}
 
-.gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+        .feature-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:28px}
+        .feature-card .number{font-family:var(--font-display);font-weight:700;font-size:36px;line-height:1;color:var(--text-faint);margin-bottom:10px}
+        .feature-card .title{font-family:var(--font-label);font-weight:700;font-size:18px;color:var(--text-hi);margin-bottom:10px}
+        .feature-card .description{font-family:var(--font-body);font-size:15px;line-height:1.5;color:var(--text-mid)}
 
-/* Content patterns */
-.list-dots{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5;color:var(--text-mid)}
-.list-dots li{position:relative;padding-left:24px}
-.list-dots li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--magenta);border-radius:50%}
+        .split-content{display:flex;gap:40px;height:100%}
+        .split-left,.split-right{flex:1;display:flex;flex-direction:column;gap:20px}
+        .split-middle-divider{width:1px;background:rgba(20,25,35,.10)}
 
-.split-2-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;height:100%}
-.split-2-cols .col-left,.split-2-cols .col-right{display:flex;flex-direction:column;gap:18px}
-.split-2-cols .col-left p{font-size:18px;line-height:1.6;color:var(--text-mid)}
-.split-2-cols .col-right .feature-item{display:flex;align-items:center;gap:16px;font-size:17px;line-height:1.4;color:var(--text-hi);font-weight:500}
-.split-2-cols .col-right .feature-item svg{width:28px;height:28px;color:var(--blue)}
+        .large-card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px}
+        .large-card .header{display:flex;align-items:center;gap:15px;margin-bottom:10px}
+        .large-card .header .icon-md{color:var(--blue)}
+        .large-card .header .title{font-family:var(--font-label);font-weight:700;font-size:20px;color:var(--text-hi)}
+        .large-card ul{list-style:none;padding:0;margin:0}
+        .large-card ul li{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;margin-bottom:8px}
+        .large-card ul li .icon-sm{color:var(--blue);margin-top:2px}
 
-.grid-cards-2x2{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:20px}
-.card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
-.card.bordered-top{border-top:3px solid transparent;border-image:var(--grad-brand) 1;padding-top:21px}
-.card h3{font-family:var(--font-body);font-weight:600;font-size:20px;color:var(--text-hi);margin-bottom:8px}
-.card p{font-size:16px;line-height:1.5;color:var(--text-mid)}
-.grid-cards-2x2 .card h3{font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--text-hi);margin-bottom:6px}
-.grid-cards-2x2 .card p{font-size:14px;line-height:1.5;color:var(--text-mid)}
+        .tag-panel{background:var(--bg-1);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px;display:flex;flex-wrap:wrap;gap:10px;align-content:flex-start}
+        .tag-panel .tag{background:var(--bg-2);border:1px solid var(--card-border);border-radius:99px;padding:8px 18px;font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.05em;color:var(--text-mid)}
 
-.price-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--text-mid);
-}
-.price-table th, .price-table td {
-    border: 1px solid var(--card-border);
-    padding: 12px 18px;
-    text-align: left;
-}
-.price-table th {
-    background-color: var(--bg-deep);
-    font-family: var(--font-label);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    color: var(--text-hi);
-}
-.price-table td strong {
-    color: var(--text-hi);
-}
-.price-table tr:nth-child(even) {
-    background-color: var(--bg-1);
-}
+        .contact-steps{display:grid;grid-template-columns:1.5fr 1fr;gap:40px;align-items:flex-start}
+        .vertical-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:30px}
+        .vertical-steps::before{content:'';position:absolute;left:10px;top:0;bottom:0;width:2px;background:var(--card-border)}
+        .step-item{position:relative}
+        .step-item::before{content:'';position:absolute;left:-20px;top:8px;width:12px;height:12px;background:var(--blue);border-radius:50%;z-index:10}
+        .step-item .icon-sm{position:absolute;left:-28px;top:2px;color:white;width:20px;height:20px;z-index:11}
+        .step-item .step-title{font-family:var(--font-label);font-weight:700;font-size:16px;color:var(--text-hi);margin-bottom:4px}
+        .step-item .step-description{font-family:var(--font-body);font-size:14px;line-height:1.5;color:var(--text-lo)}
 
-.numbered-process{display:flex;flex-direction:column;gap:25px;margin-top:20px}
-.numbered-process .step{display:flex;align-items:flex-start;gap:20px}
-.numbered-process .step .number{width:48px;height:48px;border-radius:50%;background:var(--client-base-dark);color:white;display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-weight:700;font-size:28px;flex-shrink:0}
-.numbered-process .step .content h3{font-family:var(--font-body);font-weight:600;font-size:22px;color:var(--text-hi);margin-bottom:6px}
-.numbered-process .step .content p{font-size:17px;line-height:1.6;color:var(--text-mid)}
+        .contact-card{background:var(--bg-2);border-left:5px solid var(--primary-green);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:10px}
+        .contact-card .card-header{display:flex;align-items:center;gap:15px;margin-bottom:10px}
+        .contact-card .card-header .icon-md{color:var(--primary-green)}
+        .contact-card .card-header .card-title{font-family:var(--font-label);font-weight:700;font-size:22px;color:var(--text-hi)}
+        .contact-card .contact-detail{font-family:var(--font-body);font-size:16px;line-height:1.5;color:var(--text-mid)}
+        .contact-card .contact-detail strong{color:var(--text-hi)}
+        .contact-card .cta-link{display:inline-block;margin-top:15px;padding:10px 20px;background:var(--grad-brand);color:#fff;font-family:var(--font-label);font-weight:600;font-size:14px;text-decoration:none;border-radius:var(--radius);text-align:center}
 
-.two-big-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px;height:100%;align-items:center}
-.two-big-cards .card{padding:30px}
-.two-big-cards .card .icon-title{display:flex;align-items:center;gap:15px;margin-bottom:20px}
-.two-big-cards .card .icon-title svg{width:38px;height:38px;color:var(--client-accent-red)}
-.two-big-cards .card .icon-title h3{font-family:var(--font-display);font-weight:700;font-size:28px;margin:0;color:var(--text-hi)}
-.two-big-cards .card ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:10px}
-.two-big-cards .card ul li{font-size:16px;line-height:1.5;color:var(--text-mid);position:relative;padding-left:28px}
-.two-big-cards .card ul li::before{content:"—";position:absolute;left:0;color:var(--magenta);font-size:18px;top:0}
+        .s-footer{display:flex;justify-content:space-between;align-items:center;height:20px;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+        .s-footer .page-number{color:var(--blue);font-weight:700}
 
-.investment-section{display:flex;flex-direction:column;gap:25px;margin-top:30px}
-.investment-item{display:flex;flex-direction:column;gap:8px;padding-left:15px;border-left:3px solid var(--card-border)}
-.investment-item h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--client-base-dark);margin:0}
-.investment-item p{font-size:17px;line-height:1.6;color:var(--text-mid)}
-.investment-item h3 .value-label{font-size:20px;font-weight:600;color:var(--text-lo);margin-left:10px}
-
-.closing-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;height:100%;align-items:center}
-.closing-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:20px}
-.closing-steps .step-item{display:flex;align-items:center;gap:15px;font-size:18px;line-height:1.5;color:var(--text-mid);position:relative}
-.closing-steps .step-item .step-number{width:32px;height:32px;background:var(--client-base-dark);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;flex-shrink:0;z-index:2}
-.closing-steps .step-connector{position:absolute;left:35px;top:40px;bottom:40px;width:2px;background:var(--card-border);z-index:1}
-.contact-card{background:var(--bg-2);border-left:5px solid var(--grad-brand);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.contact-card h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--text-hi);margin-bottom:10px}
-.contact-card p{font-size:17px;line-height:1.5;color:var(--text-mid)}
-.contact-card .contact-detail{display:flex;align-items:center;gap:12px;font-size:17px;color:var(--text-hi)}
-.contact-card .contact-detail svg{width:24px;height:24px;color:var(--client-accent-red)}
-.contact-card .cta-button{display:inline-block;margin-top:20px;padding:12px 28px;background:var(--grad-brand);color:white;font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.05em;text-decoration:none;border-radius:99px;text-align:center;transition:transform .2s ease}
-.contact-card .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
-</style>
+        .gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+    </style>
 </head>
 <body>
-<header class="app-header"><div class="header-left"><span class="wordmark">Campuslands Full Service</span></div><div class="header-center"></div><div class="header-right"><span class="badge-confidential">Confidencial</span></div></header>
-<main class="app-content"><section class="slides-viewport"><div class="slides-container" id="slides-container">
-  
-  <div class="slide active" data-slide="1"><div class="slide-inner cover">
-    <div class="cover-top">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="badge-confidential">Confidencial</span>
+<header class="app-header">
+    <div class="header-left">
+        <span class="wordmark">Campuslands Full Service</span>
     </div>
-    <div class="cover-body">
-      <span class="eyebrow">PROPUESTA DE VALOR</span>
-      <h1 class="title">Tinta Nomada: <span class="gt">Tu Arte</span>, Tu Espacio Digital</h1>
-      <p class="subtitle">Un portafolio web que agiliza el proceso y destaca tu estudio</p>
-      <h2 class="client-name">PARA Tinta Nomada</h2>
+    <div class="header-center"></div>
+    <div class="header-right">
+        <span class="badge-confidential">Confidencial</span>
     </div>
-    <div class="cover-meta">
-      <div>
-        <label>Preparado para</label>
-        <span>Estefania Nova Rincon, Dueña del Estudio</span>
-      </div>
-      <div>
-        <label>Preparado por</label>
-        <span>Campuslands Full Service</span>
-      </div>
-      <div>
-        <label>Fecha</label>
-        <span>22 de septiembre de 2026</span>
-      </div>
-      <div>
-        <label>Versión</label>
-        <span>1.0</span>
-      </div>
-    </div>
-  </div></div>
-  
-  <div class="slide" data-slide="2"><div class="slide-inner internal glow-a">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">01 · DIAGNÓSTICO ACTUAL</span>
-      <h2 class="s-title">El Desafío: <span class="gt">Agendamiento Confuso</span> y Pérdida de Clientes</h2>
-      <p class="s-subtitle">La gestión actual limita el crecimiento y la experiencia del cliente.</p>
-      <ul class="list-dots">
-        <li>Agendamiento por Instagram y WhatsApp se mezcla con publicaciones normales.</li>
-        <li>Clientes no saben cómo pedir cita ni los precios aproximados.</li>
-        <li>Preguntas repetitivas sobre walk-ins, métodos de pago y costos.</li>
-        <li>Dificultad para que los clientes exploren el portafolio de tatuadores específicos.</li>
-        <li>Pérdida de mensajes e interesados por falta de un canal claro y estructurado.</li>
-      </ul>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">01 / 09</span>
-    </div>
-  </div></div>
-  
-  <div class="slide" data-slide="3"><div class="slide-inner internal glow-b">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">02 · NUESTRA PROPUESTA</span>
-      <h2 class="s-title">Una Presencia Web <span class="gt">Clara y con Actitud</span></h2>
-      <p class="s-subtitle">Un portafolio digital que simplifica la interacción y resalta tu marca.</p>
-      <div class="split-2-cols">
-        <div class="col-left">
-          <p>Desarrollaremos una página web tipo portafolio que capture la esencia "elegante-oscura" de Tinta Nomada, con una base en negro/gris y acentos en rojo sangre. Este sitio será un hub para su arte y para la información clave que sus clientes buscan.</p>
-          <p>El objetivo es organizar su trabajo, aclarar el proceso y los precios, y canalizar eficientemente las consultas, proyectando una imagen profesional y de autoridad en el mundo del tatuaje.</p>
-        </div>
-        <div class="col-right">
-          <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"></path></svg>
-            <span><strong>Portafolio Organizado:</strong> Muestra el talento individual de cada tatuador.</span>
-          </div>
-          <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-            <span><strong>Precios Transparentes:</strong> Rangos de inversión según el tamaño del tatuaje.</span>
-          </div>
-          <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-            <span><strong>Proceso Claro:</strong> Guía paso a paso desde el diseño hasta el cuidado post-tatuaje.</span>
-          </div>
-          <div class="feature-item">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            <span><strong>Agendamiento Simple:</strong> Botón de WhatsApp directo y visible.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">02 / 09</span>
-    </div>
-  </div></div>
-  
-  <div class="slide" data-slide="4"><div class="slide-inner internal glow-a">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">03 · MÓDULOS PRINCIPALES</span>
-      <h2 class="s-title">Tu Estudio, <span class="gt">Digitalizado</span> y Organizado</h2>
-      <p class="s-subtitle">Funcionalidades clave para un sitio web que vende y educa.</p>
-      <div class="grid-cards-2x2">
-        <div class="card bordered-top">
-          <h3>Portafolio por Tatuador</h3>
-          <p>Galerías individuales para cada uno de los 4 tatuadores (blackwork, fine line, realismo, old school).</p>
-        </div>
-        <div class="card bordered-top">
-          <h3>Rangos de Precio</h3>
-          <p>Una sección clara con precios aproximados según el tamaño del tatuaje, evitando preguntas repetitivas.</p>
-        </div>
-        <div class="card bordered-top">
-          <h3>El Proceso del Tatuaje</h3>
-          <p>Explicación detallada desde el diseño inicial hasta los cuidados posteriores para educar al cliente.</p>
-        </div>
-        <div class="card bordered-top">
-          <h3>Contacto y Agendamiento</h3>
-          <p>Botón de WhatsApp bien visible para facilitar la reserva de citas y la resolución de dudas.</p>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">03 / 09</span>
-    </div>
-  </div></div>
-  
-  <div class="slide" data-slide="5"><div class="slide-inner internal glow-b">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">04 · NUESTROS PRECIOS</span>
-      <h2 class="s-title">Transparencia en tu <span class="gt">Inversión</span></h2>
-      <p class="s-subtitle">Rangos de precios aproximados para tu próximo tatuaje.</p>
-      <table class="price-table">
-        <thead>
-          <tr>
-            <th>Tipo de Tatuaje</th>
-            <th>Tamaño / Sesiones</th>
-            <th>Inversión (Desde)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Tatuaje Pequeño</strong></td>
-            <td>Hasta 5cm</td>
-            <td>$120.000 COP</td>
-          </tr>
-          <tr>
-            <td><strong>Tatuaje Mediano</strong></td>
-            <td>5 a 15cm</td>
-            <td>$280.000 COP</td>
-          </tr>
-          <tr>
-            <td><strong>Tatuaje Grande</strong></td>
-            <td>Más de 15cm o sesión de varias horas</td>
-            <td>Se cotiza en el estudio según diseño</td>
-          </tr>
-          <tr>
-            <td><strong>Manga o Proyecto Completo</strong></td>
-            <td>Varias sesiones</td>
-            <td>$350.000 COP por sesión</td>
-          </tr>
-        </tbody>
-      </table>
-      <p style="font-size:14px; color:var(--text-lo); margin-top:20px;">*Los precios son una guía y pueden variar según la complejidad del diseño y el detalle.</p>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">04 / 09</span>
-    </div>
-  </div></div>
+</header>
+<main class="app-content">
+    <section class="slides-viewport">
+        <div class="slides-container" id="slides-container">
 
-  <div class="slide" data-slide="6"><div class="slide-inner internal glow-a">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">05 · EL PROCESO</span>
-      <h2 class="s-title">Tu Experiencia <span class="gt">Paso a Paso</span></h2>
-      <p class="s-subtitle">Te guiamos desde la idea hasta el cuidado de tu nuevo tatuaje.</p>
-      <div class="numbered-process">
-        <div class="step">
-          <span class="number">1</span>
-          <div class="content">
-            <h3>Diseño y Consulta Inicial</h3>
-            <p>Conversa con tu tatuador para afinar la idea, estilo y tamaño. Recibe recomendaciones expertas para el mejor resultado.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="number">2</span>
-          <div class="content">
-            <h3>Agendamiento y Señal</h3>
-            <p>Define la fecha y hora de tu cita. Se requiere una señal para confirmar tu espacio y que el artista prepare tu diseño.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="number">3</span>
-          <div class="content">
-            <h3>El Día de la Cita</h3>
-            <p>Relájate en un ambiente seguro e higiénico. Tu tatuador se encargará de crear la pieza que deseas con los más altos estándares.</p>
-          </div>
-        </div>
-        <div class="step">
-          <span class="number">4</span>
-          <div class="content">
-            <h3>Cuidados Post-Tatuaje</h3>
-            <p>Te proporcionaremos todas las instrucciones para el cuidado de tu nuevo tatuaje, asegurando una correcta cicatrización y durabilidad.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">05 / 09</span>
-    </div>
-  </div></div>
+            <div class="slide active" data-slide="1">
+                <div class="slide-inner cover">
+                    <div class="cover__topbar">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="badge-confidential">Confidencial</span>
+                    </div>
+                    <div class="cover__body">
+                        <span class="eyebrow">Propuesta de Servicios Digitales</span>
+                        <h1 class="title"><strong>Potenciando</strong> la Presencia de <span class="gt">Vivero Raices Verdes</span></h1>
+                        <p class="subtitle">Expandiendo tu conexión digital en el corazón de Santander</p>
+                        <div class="for-client">PARA Vivero Raices Verdes</div>
+                    </div>
+                    <div class="cover__meta">
+                        <div class="cover__meta-item">
+                            <label>Preparado para</label>
+                            <span>Diana Carolina Suarez Leon</span>
+                        </div>
+                        <div class="cover__meta-item">
+                            <label>Preparado por</label>
+                            <span>Campuslands Full Service</span>
+                        </div>
+                        <div class="cover__meta-item">
+                            <label>Fecha</label>
+                            <span><?php echo date('d M Y'); ?></span>
+                        </div>
+                        <div class="cover__meta-item">
+                            <label>Versión</label>
+                            <span>1.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <div class="slide" data-slide="7"><div class="slide-inner internal glow-b">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">06 · POR QUÉ TINTA NOMADA</span>
-      <h2 class="s-title">Tu Elección de <span class="gt">Calidad y Seguridad</span></h2>
-      <p class="s-subtitle">Lo que nos diferencia y nos convierte en tu mejor opción.</p>
-      <div class="two-big-cards">
-        <div class="card">
-          <div class="icon-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
-            <h3>Profesionalismo y Bioseguridad</h3>
-          </div>
-          <ul>
-            <li>Los 4 tatuadores tienen certificación en bioseguridad, garantizando un servicio seguro.</li>
-            <li>Utilizamos materiales 100% desechables por cliente, sin excepción.</li>
-            <li>Ambiente de trabajo limpio, ordenado y que cumple con todas las normativas de salud.</li>
-          </ul>
-        </div>
-        <div class="card">
-          <div class="icon-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
-            <h3>Arte y Garantía</h3>
-          </div>
-          <ul>
-            <li>Cada tatuador tiene un estilo artístico bien marcado (blackwork, fine line, realismo, old school).</li>
-            <li>No "hacemos de todo", nos especializamos para ofrecer resultados excepcionales.</li>
-            <li>Ofrecemos garantía de retoque gratis dentro de los primeros 30 días si el tatuaje lo necesita.</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">06 / 09</span>
-    </div>
-  </div></div>
-  
-  <div class="slide" data-slide="8"><div class="slide-inner internal glow-a">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">07 · INVERSIÓN Y PLAZOS</span>
-      <h2 class="s-title">Un Impulso para tu <span class="gt">Negocio y tu Marca</span></h2>
-      <p class="s-subtitle">Una inversión estratégica para la visibilidad y eficiencia de Tinta Nomada.</p>
-      <div class="investment-section">
-        <div class="investment-item">
-          <h3>Inversión en el Proyecto Web: <span class="value-label">Valor por definir</span></h3>
-          <p>La inversión total se definirá en función de las funcionalidades exactas y la complejidad del diseño de las galerías y secciones específicas para cada tatuador.</p>
-        </div>
-        <div class="investment-item">
-          <h3>Plazo de Entrega: <span class="value-label">3 semanas</span></h3>
-          <p>Nos comprometemos a tener tu sitio web listo en aproximadamente 3 semanas, para que puedas presentarlo en la convención de tatuajes de Bucaramanga.</p>
-        </div>
-        <div class="investment-item">
-          <h3>Modalidad de Pago: <span class="value-label">A definir</span></h3>
-          <p>Las condiciones de pago se acordarán de forma flexible para alinearse con tus necesidades y asegurar una colaboración exitosa.</p>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">07 / 09</span>
-    </div>
-  </div></div>
+            <div class="slide" data-slide="2">
+                <div class="slide-inner internal glow-a">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">01 · SITUACIÓN ACTUAL</span>
+                        <h2 class="s-title">El Desafío de la <span class="gt">Visibilidad Digital</span></h2>
+                        <p>Vivero Raices Verdes, con 5 años de trayectoria en Floridablanca, ofrece plantas ornamentales, suculentas y árboles frutales con venta local y domicilios. Sin embargo, su limitada presencia digital a solo Facebook restringe su crecimiento y alcance:</p>
+                        <ul>
+                            <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg>
+                                <strong>Limitación de alcance</strong>: Los clientes potenciales no tienen acceso fácil al catálogo completo ni información clara sobre el servicio de domicilios.
+                            </li>
+                            <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="9"/></svg>
+                                <strong>Mercado inexplorado</strong>: Muchas personas en otras zonas del área metropolitana de Bucaramanga no saben que el vivero existe.
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">02</span>
+                    </div>
+                </div>
+            </div>
 
-  <div class="slide" data-slide="9"><div class="slide-inner internal glow-b">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">08 · PRÓXIMOS PASOS</span>
-      <h2 class="s-title">Conversemos para <span class="gt">Dar Vida</span> a tu Web</h2>
-      <p class="s-subtitle">Estamos listos para potenciar la presencia digital de Tinta Nomada.</p>
-      <div class="closing-grid">
-        <div class="closing-steps">
-          <div class="step-connector"></div>
-          <div class="step-item"><span class="step-number">1</span>Revisión de esta propuesta y resolución de sus inquietudes.</div>
-          <div class="step-item"><span class="step-number">2</span>Definición final de los detalles y la inversión del proyecto.</div>
-          <div class="step-item"><span class="step-number">3</span>Firma del acuerdo de servicio y arranque del desarrollo web.</div>
-          <div class="step-item"><span class="step-number">4</span>Lanzamiento de su nueva plataforma digital antes de la convención.</div>
-        </div>
-        <div class="contact-card">
-          <h3>¡Iniciemos su Transformación Digital!</h3>
-          <p>Esperamos con entusiasmo la oportunidad de colaborar en el crecimiento de Tinta Nomada. Contáctanos para conversar sobre los detalles.</p>
-          <div class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span>+57 318 470 2261 (Estefania Nova Rincon)</span>
-          </div>
-          <div class="contact-detail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span>tintanomada.estudio@gmail.com</span>
-          </div>
-          <a href="https://wa.me/573184702261" target="_blank" class="cta-button">¡Hablemos en WhatsApp!</a>
-        </div>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">08 / 09</span>
-    </div>
-  </div></div>
+            <div class="slide" data-slide="3">
+                <div class="slide-inner internal glow-b">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">02 · LA SOLUCIÓN PROPUESTA</span>
+                        <h2 class="s-title">Un Ecosistema Digital <span class="gt">a tu Medida</span></h2>
+                        <div class="split-content">
+                            <div class="split-left">
+                                <div class="large-card">
+                                    <div class="header">
+                                        <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                        <div class="title">Experiencia Online Intuitiva</div>
+                                    </div>
+                                    <p class="card-description">Diseñaremos una plataforma web que refleje la frescura de tus plantas y la calidez de tu marca, enfocada en la facilidad de uso para tus clientes. Permitiendo explorar el catálogo completo y conocer tus servicios.</p>
+                                </div>
+                            </div>
+                            <div class="split-middle-divider"></div>
+                            <div class="split-right">
+                                <div class="large-card">
+                                    <div class="header">
+                                        <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                        <div class="title">Conexión Directa y Eficiente</div>
+                                    </div>
+                                    <p class="card-description">Facilitaremos el proceso de consulta y compra, permitiendo a tus clientes acceder a información clave y realizar pedidos de forma instantánea a través de canales directos.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">03</span>
+                    </div>
+                </div>
+            </div>
 
-  <div class="slide" data-slide="10"><div class="slide-inner internal glow-a">
-    <div class="s-header">
-      <span class="wordmark">Campuslands Full Service</span>
-      <span class="wordmark-client">Tinta Nomada</span>
-    </div>
-    <div class="s-body">
-      <span class="eyebrow">09 · AGRADECIMIENTO</span>
-      <h2 class="s-title">Gracias por su <span class="gt">Confianza</span></h2>
-      <p class="s-subtitle">Valoramos la oportunidad de impulsar el crecimiento y la reputación de Tinta Nomada.</p>
-      <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: calc(100% - 150px); text-align: center; gap: 30px;">
-        <p style="font-family: var(--font-display); font-weight: 700; font-size: 38px; line-height: 1.3; color: var(--text-hi);">
-          Estamos convencidos de que una <span class="gt">presencia digital sólida</span><br>
-          es clave para destacar en la industria del tatuaje.
-        </p>
-        <p style="font-family: var(--font-body); font-weight: 500; font-size: 22px; color: var(--text-mid);">
-          Esperamos poder acompañarlos en este emocionante proyecto.
-        </p>
-        <a href="https://wa.me/573184702261" target="_blank" class="cta-button" style="padding: 15px 40px; font-size: 18px;">
-          Coordinar una Presentación Detallada
-        </a>
-      </div>
-    </div>
-    <div class="s-footer">
-      <span>Campuslands Full Service</span>
-      <span>Cotización Tinta Nomada</span>
-      <span class="page-number">09 / 09</span>
-    </div>
-  </div></div>
-  
-</div></section></main>
+            <div class="slide" data-slide="4">
+                <div class="slide-inner internal glow-a">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">03 · ALCANCE DEL PROYECTO</span>
+                        <h2 class="s-title">Módulos <span class="gt">Clave para tu Crecimiento</span></h2>
+                        <div class="grid-3-col">
+                            <div class="feature-card">
+                                <div class="number">01</div>
+                                <h3 class="title"><strong>Catálogo de Plantas Interactivo</strong></h3>
+                                <p class="description">Organización intuitiva por categorías (Interior, Exterior, Suculentas, Frutales) con imágenes de alta calidad y descripciones detalladas para cada producto.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="number">02</div>
+                                <h3 class="title"><strong>Información de Domicilios Clara</strong></h3>
+                                <p class="description">Sección dedicada con detalles sobre el servicio de entrega y un mapa o listado claro de zonas de cobertura dentro del área metropolitana de Bucaramanga.</p>
+                            </div>
+                            <div class="feature-card">
+                                <div class="number">03</div>
+                                <h3 class="title"><strong>Botón de WhatsApp Directo</strong></h3>
+                                <p class="description">Integración fluida para facilitar la comunicación instantánea y la toma de pedidos, permitiendo una asesoría personalizada y compras ágiles.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">04</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="5">
+                <div class="slide-inner internal glow-b">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">04 · NUESTRA PROPUESTA DE VALOR</span>
+                        <h2 class="s-title"><span class="gt">Campuslands</span>: Tu Aliado Estratégico</h2>
+                        <div class="split-content">
+                            <div class="split-left">
+                                <p>En Campuslands Full Service, entendemos la visión de Vivero Raices Verdes. Nuestra metodología ágil y enfoque personalizado nos permiten construir soluciones digitales que no solo cumplen con tus expectativas, sino que potencian tus diferenciales únicos:</p>
+                                <ul>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <strong>Asesoría personalizada</strong>: Reflejamos la calidad de tu servicio en cada interacción digital.
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <strong>Eficiencia en entregas</strong>: Comunicamos claramente tus capacidades de domicilio el mismo día en Floridablanca.
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <strong>Producto adaptado</strong>: Resaltamos que tus plantas están aclimatadas al clima santandereano, garantizando su supervivencia.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="split-right">
+                                <div class="tag-panel">
+                                    <span class="tag">Soluciones a Medida</span>
+                                    <span class="tag">Desarrollo Ágil</span>
+                                    <span class="tag">Soporte Continuo</span>
+                                    <span class="tag">Enfoque en Resultados</span>
+                                    <span class="tag">Tecnología de Vanguardia</span>
+                                    <span class="tag">Optimización SEO</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">05</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="6">
+                <div class="slide-inner internal glow-a">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">05 · INVERSIÓN Y CRONOGRAMA</span>
+                        <h2 class="s-title">Próximos Pasos y <span class="gt">Compromiso</span></h2>
+                        <div class="grid-2-col">
+                            <div class="large-card">
+                                <div class="header">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                                    <div class="title">Inversión del Proyecto</div>
+                                </div>
+                                <ul>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        <strong>Valor por definir</strong> tras un análisis detallado de tus necesidades específicas.
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        Nos adaptamos al alcance y presupuesto de Vivero Raices Verdes para una propuesta económica justa.
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        Presentaremos un plan de pago flexible en la siguiente etapa.
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="large-card">
+                                <div class="header">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                                    <div class="title">Cronograma Estimado</div>
+                                </div>
+                                <ul>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        Plazo inicial sugerido: <strong>2 semanas</strong> (sujeto a la confirmación del alcance final).
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        Implementación ágil con entregas incrementales para validar cada etapa.
+                                    </li>
+                                    <li><svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                        Comunicación constante y transparente en cada fase del proyecto.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">06</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="slide" data-slide="7">
+                <div class="slide-inner internal glow-b">
+                    <div class="s-header">
+                        <span class="wordmark">Campuslands Full Service</span>
+                        <span class="client-name">Vivero Raices Verdes</span>
+                    </div>
+                    <div class="s-body">
+                        <span class="eyebrow">06 · SIGUIENTES PASOS</span>
+                        <h2 class="s-title">Conversemos sobre el <span class="gt">Futuro de tu Vivero</span></h2>
+                        <div class="contact-steps">
+                            <div class="vertical-steps">
+                                <div class="step-item">
+                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <div class="step-title">1. Revisión y Ajustes</div>
+                                    <div class="step-description">Analicemos juntos esta propuesta y afinemos los detalles para alinearnos completamente a tus expectativas.</div>
+                                </div>
+                                <div class="step-item">
+                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <div class="step-title">2. Definición de Inversión</div>
+                                    <div class="step-description">Presentaremos un presupuesto detallado y un plan de implementación flexible, adaptado a tu negocio.</div>
+                                </div>
+                                <div class="step-item">
+                                    <svg class="icon-sm" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><polyline points="20 6 9 17 4 12"/></svg>
+                                    <div class="step-title">3. Inicio del Proyecto</div>
+                                    <div class="step-description">Con tu aprobación, daremos inicio al desarrollo para construir tu nueva y potente presencia digital.</div>
+                                </div>
+                            </div>
+                            <div class="contact-card">
+                                <div class="card-header">
+                                    <svg class="icon-md" viewBox="0 0 24 24" width="36" height="36" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                                    <div class="card-title">Contacta a Diana Carolina</div>
+                                </div>
+                                <div class="contact-detail"><strong>Propietaria</strong>, Vivero Raices Verdes</div>
+                                <div class="contact-detail"><strong>WhatsApp</strong>: 300 481 9027</div>
+                                <div class="contact-detail"><strong>Correo</strong>: diana@raicesverdes.co</div>
+                                <a href="mailto:diana@raicesverdes.co" class="cta-link">Envíanos un correo</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="s-footer">
+                        <span>Campuslands Full Service</span>
+                        <span>Cotizacion Vivero Raices Verdes</span>
+                        <span class="page-number">07</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+</main>
 <footer class="slides-footer-controls">
-  <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
-  <div class="slide-indicator"><span id="slide-number-display">1 / 9</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
-  <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+    <div class="slide-indicator"><span id="slide-number-display">1 / 7</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+    <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
 </footer>
 
 <script>
-const state={currentSlide:1,totalSlides:9};
-function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
-function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
-function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();ajustarAutofit();}
-function ajustarAutofit(){document.querySelectorAll('.s-body,.cover-body,.cover__body').forEach(el=>{el.style.paddingTop='';el.style.display='';el.style.flexDirection='';el.style.justifyContent='';el.style.rowGap='';el.style.zoom=1;let z=1;while(el.scrollHeight>el.clientHeight&&z>0.62){z-=0.03;el.style.zoom=z.toFixed(2);}if(el.scrollHeight<el.clientHeight){const hueco=el.clientHeight-el.scrollHeight;const n=el.children.length;if(hueco>32&&n>1){el.style.display='flex';el.style.flexDirection='column';el.style.justifyContent='flex-start';el.style.rowGap=Math.round(hueco/n)+'px';}else if(hueco>32){el.style.paddingTop=Math.round(hueco/2)+'px';}}});document.querySelectorAll('.cover__topbar,.cover-topbar').forEach(el=>{el.style.position='static';el.style.inset='auto';el.style.display='flex';el.style.width='100%';el.style.maxWidth='100%';el.style.justifyContent='space-between';el.style.alignItems='center';el.style.boxSizing='border-box';});}
-document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
-window.addEventListener('resize',resizeSlideStage);
-window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{setTimeout(ajustarAutofit,50);});});
-window.addEventListener('load',()=>{setTimeout(ajustarAutofit,50);});
+    const state={currentSlide:1,totalSlides:7};
+    function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
+    function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
+    function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
+    document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
+    window.addEventListener('resize',resizeSlideStage);
+    function ajustarAutofit(){document.querySelectorAll('.s-body,.cover-body,.cover__body').forEach(el=>{el.style.paddingTop='';el.style.display='';el.style.flexDirection='';el.style.justifyContent='';el.style.rowGap='';el.style.zoom=1;let z=1;while(el.scrollHeight>el.clientHeight&&z>0.62){z-=0.03;el.style.zoom=z.toFixed(2);}if(el.scrollHeight<el.clientHeight){const hueco=el.clientHeight-el.scrollHeight;const n=el.children.length;if(hueco>32&&n>1){el.style.display='flex';el.style.flexDirection='column';el.style.justifyContent='flex-start';el.style.rowGap=Math.round(hueco/n)+'px';}else if(hueco>32){el.style.paddingTop=Math.round(hueco/2)+'px';}}});document.querySelectorAll('.cover__topbar,.cover-topbar').forEach(el=>{el.style.position='static';el.style.inset='auto';el.style.display='flex';el.style.width='100%';el.style.maxWidth='100%';el.style.justifyContent='space-between';el.style.alignItems='center';el.style.boxSizing='border-box';});}
+    window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();(document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(()=>{setTimeout(ajustarAutofit,50);});});
+    window.addEventListener('load',()=>{setTimeout(ajustarAutofit,50);});
 </script>
 </body>
 </html>
