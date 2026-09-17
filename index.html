@@ -1,51 +1,442 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propuesta Comercial - Clínica Veterinaria Huellitas Felices</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        /* RESET OBLIGATORIO */
-        *{box-sizing:border-box;margin:0;padding:0}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Propuesta - Taller Automotriz Rodriguez Hermanos</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=Montserrat:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
 
-        /* TOKENS DE COLOR Y FUENTES PERSONALIZADOS PARA VERDE ESMERALDA */
-        :root{
-            /* Base Campuslands */
-            --bg-0:#F2F3F5;--bg-1:#E9EBEF;--bg-2:#FFFFFF;--bg-deep:#E2E4E9;
-            --text-hi:#14161B;--text-mid:#3D4451;--text-lo:#6B7280;--text-faint:#9CA3AF;
-            --card-border:rgba(20,25,35,.10);--dot-confidential:#C98A00;--radius:14px;
+:root{
+  /* Base Campuslands Full Service tokens */
+  --bg-0:#F2F3F5;
+  --bg-1:#E9EBEF;
+  --bg-2:#FFFFFF;
+  --bg-deep:#E2E4E9;
+  --text-hi:#14161B;
+  --text-mid:#3D4451;
+  --text-lo:#6B7280;
+  --text-faint:#9CA3AF;
+  --card-border:rgba(20,25,35,.10);
+  --dot-confidential:#C98A00;
+  --radius:14px;
+  --font-display:'Playfair Display',serif;
+  --font-body:'Poppins',sans-serif;
+  --font-label:'Montserrat',sans-serif;
 
-            /* Colores de Marca Cliente (Verde Esmeralda) remapeados */
-            --cyan:#138871; /* Emerald base */
-            --blue:#1AA78F; /* Lighter emerald for gradient transition */
-            --violet:#0F6B58; /* Deeper emerald for gradient transition */
-            --magenta:#0A4F41; /* Darkest emerald for gradient end */
+  /* Client-specific colors: Red and Charcoal Grey */
+  --client-red:#D62F2F; /* Main Red for accent */
+  --client-charcoal:#3D3D3D; /* Main Charcoal Grey for accent */
 
-            /* Gradiente de Marca Cliente */
-            --grad-brand:linear-gradient(100deg,#138871 0%,#1AA78F 38%,#0F6B58 72%,#0A4F41 100%);
+  /* Mapped tokens */
+  --cyan:var(--client-charcoal);
+  --blue:color-mix(in srgb, var(--client-charcoal) 70%, var(--client-red) 30%); /* A darker mid-grey/red blend */
+  --violet:color-mix(in srgb, var(--client-red) 70%, var(--client-charcoal) 30%); /* A darker red/charcoal blend */
+  --magenta:var(--client-red);
+  --grad-brand:linear-gradient(100deg, var(--client-charcoal) 0%, #5C5C5C 38%, #9E2F2F 72%, var(--client-red) 100%);
+  --bg-glow-a:rgba(214, 47, 47, .09); /* Transparent red glow */
+  --bg-glow-b:rgba(61, 61, 61, .09); /* Transparent charcoal glow */
+  --bg-wash:linear-gradient(135deg,rgba(214,47,47,.06) 0%,rgba(61,61,61,.05) 32%,rgba(214,47,47,.05) 66%,rgba(61,61,61,.07) 100%);
+}
 
-            /* Glows de Marca Cliente */
-            --bg-glow-a:rgba(19,136,113,.09); /* From --cyan */
-            --bg-glow-b:rgba(10,79,65,.09); /* From --magenta */
+body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body,'Poppins',sans-serif);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
+.app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
+.app-header{border-bottom:1px solid rgba(20,25,35,.10)}
+.slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
+.wordmark{font-family:'Montserrat',sans-serif;font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
+.badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:'Montserrat',sans-serif;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
+.badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
+.app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
+.slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
+.slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease;border-radius:var(--radius);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.22)}
+.slide.active{display:block;opacity:1;transform:translateY(0)}
+.slide-inner{width:100%;height:100%;overflow:hidden;position:relative;color:var(--text-hi);background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
 
-            /* Mezcla de Fondo (Mantener estructura Campuslands pero con nuevos glows) */
-            --bg-wash:linear-gradient(135deg,rgba(19,136,113,.06) 0%,rgba(26,167,143,.05) 32%,rgba(15,107,88,.05) 66%,rgba(10,79,65,.07) 100%);
+/* Slide-specific CSS */
+.slide-inner.cover{display:grid;grid-template-rows:1fr 1.8fr 1fr;padding:0 54px 44px}
+.slide-inner.cover .cover-top{display:flex;justify-content:space-between;align-items:flex-start;padding-top:34px}
+.slide-inner.cover .cover-body{display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
+.slide-inner.cover .cover-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo)}
+.slide-inner.cover .cover-body .title{font-family:var(--font-display);font-weight:900;font-size:72px;line-height:1.1;color:var(--text-hi)}
+.slide-inner.cover .cover-body .subtitle{font-family:var(--font-body);font-weight:400;font-size:24px;color:var(--text-mid)}
+.slide-inner.cover .cover-body .client-name{font-family:var(--font-display);font-weight:700;font-style:italic;font-size:38px;color:var(--text-hi);margin-top:20px}
+.slide-inner.cover .cover-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:28px;border-top:1px solid rgba(20,25,35,.1);margin-top:auto}
+.slide-inner.cover .cover-meta div{display:flex;flex-direction:column;gap:6px}
+.slide-inner.cover .cover-meta label{font-family:var(--font-label);font-weight:600;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-lo)}
+.slide-inner.cover .cover-meta span{font-family:var(--font-body);font-weight:500;font-size:15px;color:var(--text-mid)}
 
-            /* Fuentes */
-            --font-display:'Playfair Display',serif;
-            --font-body:'Poppins',sans-serif;
-            --font-label:'Montserrat',sans-serif;
-        }
+.slide-inner.internal{display:grid;grid-template-rows:auto 1fr auto;padding:34px 54px}
+.slide-inner.internal.glow-a{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
+.slide-inner.internal.glow-b{background:radial-gradient(120% 90% at 82% 18%,var(--bg-glow-b) 0%,transparent 45%),radial-gradient(120% 120% at 12% 92%,var(--bg-glow-a) 0%,transparent 50%),var(--bg-wash),linear-gradient(150deg,var(--bg-0) 0%,var(--bg-1) 55%,var(--bg-deep) 100%)}
 
-        /* SHELL CSS */
-        body{height:100vh;overflow:hidden;background:var(--bg-0);color:var(--text-hi);font-family:var(--font-body);display:flex;flex-direction:column;background-image:radial-gradient(120% 90% at 82% 0%,var(--bg-glow-a) 0%,transparent 45%),radial-gradient(120% 90% at 8% 100%,var(--bg-glow-b) 0%,transparent 50%),var(--bg-wash);background-attachment:fixed}
-        .app-header,.slides-footer-controls{flex:none;height:68px;padding:0 34px;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,.86);backdrop-filter:blur(12px);position:relative;z-index:50}
-        .app-header{border-bottom:1px solid rgba(20,25,35,.10)}
-        .slides-footer-controls{border-top:1px solid rgba(20,25,35,.10)}
-        .wordmark{font-family:var(--font-label);font-weight:700;font-size:13px;letter-spacing:.04em;color:var(--text-hi)}
-        .badge-confidential{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-label);font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dot-confidential);background:color-mix(in srgb,var(--dot-confidential) 10%,transparent);border:1px solid color-mix(in srgb,var(--dot-confidential) 28%,transparent);border-radius:99px;padding:7px 16px}
-        .badge-confidential::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--dot-confidential)}
-        .app-content{flex:1;min-height:0;display:flex}.slides-viewport{flex:1;display:flex}
-        .slides-container{flex:1;position:relative;display:flex;align-items:center;justify-content:center;padding:22px 40px;min-width:0}
-        .slide{position:absolute;width:1056px;height:594px;zoom:var(--slide-scale,1);display:none;opacity:0;transform:translateY(16px);
+.s-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px}
+.s-header .wordmark-client{font-family:var(--font-label);font-weight:700;font-size:12px;letter-spacing:.04em;color:var(--text-mid)}
+.s-body{overflow:hidden}
+.s-body .eyebrow{font-family:var(--font-label);font-weight:600;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--text-lo);margin-bottom:8px}
+.s-body .s-title{font-family:var(--font-display);font-weight:700;font-size:42px;line-height:1.2;margin-bottom:14px;color:var(--text-hi)}
+.s-body .s-subtitle{font-family:var(--font-body);font-weight:400;font-size:18px;color:var(--text-mid);margin-bottom:28px}
+.s-footer{margin-top:auto;padding-top:20px;display:flex;justify-content:space-between;align-items:center;font-family:var(--font-label);font-weight:500;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-faint)}
+.s-footer .page-number{color:var(--magenta)}
+
+.gt{background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+
+/* Content patterns */
+.list-dots{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:12px;font-size:17px;line-height:1.5;color:var(--text-mid)}
+.list-dots li{position:relative;padding-left:24px}
+.list-dots li::before{content:"";position:absolute;left:0;top:8px;width:8px;height:8px;background:var(--magenta);border-radius:50%}
+
+.grid-2-cols{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+.card{background:var(--bg-2);border:1px solid var(--card-border);border-radius:var(--radius);padding:24px}
+.card.bordered-top{border-top:3px solid transparent;border-image:var(--grad-brand) 1;padding-top:21px}
+.card h3{font-family:var(--font-body);font-weight:600;font-size:20px;color:var(--text-hi);margin-bottom:8px}
+.card p{font-size:16px;line-height:1.5;color:var(--text-mid)}
+
+.split-2-cols{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;align-items:center;height:100%}
+.split-2-cols .col-left,.split-2-cols .col-right{display:flex;flex-direction:column;gap:18px}
+.split-2-cols .col-left p{font-size:18px;line-height:1.6;color:var(--text-mid)}
+.split-2-cols .col-right .feature-item{display:flex;align-items:center;gap:16px;font-size:17px;line-height:1.4;color:var(--text-hi);font-weight:500}
+.split-2-cols .col-right .feature-item svg{width:28px;height:28px;color:var(--blue)}
+
+.grid-cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:20px}
+.grid-cards-3 .card h3{font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.02em;text-transform:uppercase;color:var(--text-hi);margin-bottom:6px}
+.grid-cards-3 .card p{font-size:14px;line-height:1.5;color:var(--text-mid)}
+
+.two-big-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px;height:100%;align-items:center}
+.two-big-cards .card{padding:30px}
+.two-big-cards .card .icon-title{display:flex;align-items:center;gap:15px;margin-bottom:20px}
+.two-big-cards .card .icon-title svg{width:38px;height:38px;color:var(--client-red)}
+.two-big-cards .card .icon-title h3{font-family:var(--font-display);font-weight:700;font-size:28px;margin:0;color:var(--text-hi)}
+.two-big-cards .card ul{list-style:none;padding-left:0;display:flex;flex-direction:column;gap:10px}
+.two-big-cards .card ul li{font-size:16px;line-height:1.5;color:var(--text-mid);position:relative;padding-left:28px}
+.two-big-cards .card ul li::before{content:"✔";position:absolute;left:0;color:var(--magenta);font-size:18px;top:0}
+
+.content-section{font-size:17px;line-height:1.6;color:var(--text-mid);margin-bottom:20px}
+.content-section strong{color:var(--text-hi)}
+.content-section ul{list-style:none;padding-left:0;margin-top:10px}
+.content-section ul li{position:relative;padding-left:20px;margin-bottom:8px}
+.content-section ul li::before{content:"—";position:absolute;left:0;color:var(--client-charcoal);font-weight:bold}
+
+.investment-section{display:flex;flex-direction:column;gap:25px;margin-top:30px}
+.investment-item{display:flex;flex-direction:column;gap:8px;padding-left:15px;border-left:3px solid var(--card-border)}
+.investment-item h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--client-charcoal);margin:0}
+.investment-item p{font-size:17px;line-height:1.6;color:var(--text-mid)}
+.investment-item h3 .value-label{font-size:20px;font-weight:600;color:var(--text-lo);margin-left:10px}
+
+.closing-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:50px;height:100%;align-items:center}
+.closing-steps{display:flex;flex-direction:column;gap:20px;position:relative;padding-left:20px}
+.closing-steps .step-item{display:flex;align-items:center;gap:15px;font-size:18px;line-height:1.5;color:var(--text-mid);position:relative}
+.closing-steps .step-item .step-number{width:32px;height:32px;background:var(--client-charcoal);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-label);font-weight:700;flex-shrink:0;z-index:2}
+.closing-steps .step-connector{position:absolute;left:35px;top:40px;bottom:40px;width:2px;background:var(--card-border);z-index:1}
+.contact-card{background:var(--bg-2);border-left:5px solid var(--grad-brand);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:15px;box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.contact-card h3{font-family:var(--font-display);font-weight:700;font-size:28px;color:var(--text-hi);margin-bottom:10px}
+.contact-card p{font-size:17px;line-height:1.5;color:var(--text-mid)}
+.contact-card .contact-detail{display:flex;align-items:center;gap:12px;font-size:17px;color:var(--text-hi)}
+.contact-card .contact-detail svg{width:24px;height:24px;color:var(--client-red)}
+.contact-card .cta-button{display:inline-block;margin-top:20px;padding:12px 28px;background:var(--grad-brand);color:white;font-family:var(--font-label);font-weight:700;font-size:15px;letter-spacing:.05em;text-decoration:none;border-radius:99px;text-align:center;transition:transform .2s ease}
+.contact-card .cta-button:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+
+
+/* Utility classes */
+.mb-20{margin-bottom:20px}
+
+</style>
+</head>
+<body>
+<header class="app-header"><div class="header-left"><span class="wordmark">Campuslands Full Service</span></div><div class="header-center"></div><div class="header-right"><span class="badge-confidential">Confidencial</span></div></header>
+<main class="app-content"><section class="slides-viewport"><div class="slides-container" id="slides-container">
+  
+  <div class="slide active" data-slide="1"><div class="slide-inner cover">
+    <div class="cover-top">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="badge-confidential">Confidencial</span>
+    </div>
+    <div class="cover-body">
+      <span class="eyebrow">PROPUESTA DE VALOR</span>
+      <h1 class="title">Potenciando tu <span class="gt">Presencia Digital</span></h1>
+      <p class="subtitle">Un catálogo de servicios en línea para Taller Automotriz Rodriguez Hermanos</p>
+      <h2 class="client-name">PARA Taller Automotriz Rodriguez Hermanos</h2>
+    </div>
+    <div class="cover-meta">
+      <div>
+        <label>Preparado para</label>
+        <span>Sr. Camilo Rodríguez, Gerente General</span>
+      </div>
+      <div>
+        <label>Preparado por</label>
+        <span>Campuslands Full Service</span>
+      </div>
+      <div>
+        <label>Fecha</label>
+        <span>17 de septiembre de 2026</span>
+      </div>
+      <div>
+        <label>Versión</label>
+        <span>1.0</span>
+      </div>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="2"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">01 · DIAGNÓSTICO ACTUAL</span>
+      <h2 class="s-title">El Desafío: Sin <span class="gt">Vitrina Digital</span></h2>
+      <p class="s-subtitle">La situación actual limita el crecimiento y la visibilidad de su negocio.</p>
+      <ul class="list-dots">
+        <li>Ausencia total de presencia en línea, limitando el alcance a la cercanía física y referencias.</li>
+        <li>Pérdida de oportunidades frente a competidores con redes sociales y catálogos visibles.</li>
+        <li>Imposibilidad para nuevos clientes de conocer servicios, precios de referencia o la experiencia del taller.</li>
+        <li>Dependencia exclusiva del "boca a boca", un canal efectivo pero no escalable.</li>
+      </ul>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">01 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="3"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">02 · NUESTRA PROPUESTA</span>
+      <h2 class="s-title">Una <span class="gt">Vitrina Digital</span> de Confianza</h2>
+      <p class="s-subtitle">Desarrollo de una página web de una sola vista para potenciar su alcance y credibilidad.</p>
+      <div class="split-2-cols">
+        <div class="col-left">
+          <p>Creamos una presencia digital sólida que refleje la trayectoria y el profesionalismo de Taller Automotriz Rodriguez Hermanos. Una página web intuitiva y de rápida carga, diseñada para ser su primera impresión en línea y principal punto de contacto.</p>
+          <p>La estructura de una sola vista asegura que toda la información relevante esté a un scroll de distancia, facilitando la navegación y el acceso instantáneo a lo que el cliente necesita.</p>
+        </div>
+        <div class="col-right">
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            <span>**Conectividad Directa:** Botón de WhatsApp siempre visible para cotizaciones y citas.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            <span>**Credibilidad Instantánea:** Destacando 15 años de experiencia y la calidad de sus servicios.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+            <span>**Visibilidad Ampliada:** Atrae nuevos clientes más allá de la ubicación física.</span>
+          </div>
+          <div class="feature-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+            <span>**Información Clara:** Acceso fácil a servicios, horarios y preguntas frecuentes.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">02 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="4"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">03 · MÓDULOS Y CONTENIDOS</span>
+      <h2 class="s-title">La Experiencia <span class="gt">Digital</span> Completa</h2>
+      <p class="s-subtitle">Cada sección de la página web, diseñada para informar y generar confianza.</p>
+      <div class="grid-cards-3">
+        <div class="card bordered-top">
+          <h3>Bienvenida y Trayectoria</h3>
+          <p>Presentación del taller, sus 15 años de historia y su compromiso con la calidad en el servicio.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Nuestros Servicios</h3>
+          <p>Detalle claro y conciso de cada servicio ofrecido: diagnóstico, frenos, mecánica general, etc.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Nuestros Diferenciales</h3>
+          <p>Técnicos certificados, equipos de última generación, garantía escrita y servicio de grúa.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Testimonios de Clientes</h3>
+          <p>Sección dedicada a la validación social y la confianza de clientes satisfechos con el servicio.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Horarios y Ubicación</h3>
+          <p>Información práctica de atención, dirección, y mapa de cómo llegar al taller en Girón.</p>
+        </div>
+        <div class="card bordered-top">
+          <h3>Preguntas Frecuentes (FAQ)</h3>
+          <p>Respuestas a dudas comunes sobre marcas de vehículos, garantía y métodos de pago aceptados.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">03 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="5"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">04 · ATRIBUTOS CLAVE</span>
+      <h2 class="s-title">Su <span class="gt">Marca</span>, Nuestro Foco</h2>
+      <p class="s-subtitle">Destacamos los pilares que hacen único a Taller Automotriz Rodríguez Hermanos.</p>
+      <div class="two-big-cards">
+        <div class="card">
+          <div class="icon-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+            <h3>Excelencia Comprobada</h3>
+          </div>
+          <ul>
+            <li>+9.000 vehículos atendidos con éxito desde la apertura del taller.</li>
+            <li>Calificación promedio de 4.7/5 en reseñas de Google, un reflejo de satisfacción.</li>
+            <li>15 años de trayectoria en el sector automotriz, sinónimo de experiencia y confianza.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <div class="icon-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path></svg>
+            <h3>Equipo y Soporte Premium</h3>
+          </div>
+          <ul>
+            <li>5 técnicos mecánicos certificados que garantizan un servicio experto y confiable.</li>
+            <li>Garantía por escrito en repuestos y mano de obra para su total tranquilidad.</li>
+            <li>Equipo de diagnóstico computarizado de última generación, para precisión en cada servicio.</li>
+            <li>Servicio de grúa en caso de emergencia, brindando un soporte completo.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">04 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="6"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">05 · NUESTRO VALOR AÑADIDO</span>
+      <h2 class="s-title">La <span class="gt">Experiencia</span> Campuslands</h2>
+      <p class="s-subtitle">Su aliado estratégico para una presencia digital efectiva y con impacto.</p>
+      <div class="content-section">
+        <p>En Campuslands Full Service, entendemos la importancia de una presencia digital que no solo informe, sino que también genere negocio. Nuestro compromiso se enfoca en:</p>
+        <ul>
+          <li><strong>Enfoque en Resultados:</strong> Diseñamos su vitrina digital pensando en la conversión y el contacto directo vía WhatsApp para agilizar sus procesos de captación.</li>
+          <li><strong>Diseño de Impacto:</strong> Creamos una interfaz robusta, seria y confiable, utilizando sus colores institucionales (rojo y gris carbón) para comunicar la solidez técnica de su marca.</li>
+          <li><strong>Agilidad y Eficiencia:</strong> Nos comprometemos a una implementación ágil para cumplir con su plazo de "la próxima semana", sin comprometer la calidad ni el detalle.</li>
+          <li><strong>Soporte Dedicado:</strong> Ofrecemos acompañamiento continuo para asegurar que su presencia digital no solo se lance, sino que también evolucione y se mantenga relevante con su negocio.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">05 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="7"><div class="slide-inner internal glow-b">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">06 · INVERSIÓN Y PLAZOS</span>
+      <h2 class="s-title"><span class="gt">Diseño</span> a la Medida</h2>
+      <p class="s-subtitle">Nuestra propuesta se adapta a sus necesidades, con un compromiso claro de plazos.</p>
+      <div class="investment-section">
+        <div class="investment-item">
+          <h3>Inversión: <span class="value-label">Valor por definir</span></h3>
+          <p>Estamos listos para ajustar nuestra propuesta económica a sus expectativas, garantizando la máxima calidad y un retorno significativo sobre su inversión. Nos enfocamos en ofrecer soluciones de valor duradero.</p>
+        </div>
+        <div class="investment-item">
+          <h3>Plazo de Entrega: <span class="value-label">Próxima semana</span></h3>
+          <p>Nos comprometemos a una entrega ágil en la próxima semana, tal como solicitado, para que su vitrina digital esté operativa rápidamente y pueda integrarse en sus facturas y señalización exterior.</p>
+        </div>
+        <div class="investment-item">
+          <h3>Modalidad de Pago: <span class="value-label">A definir</span></h3>
+          <p>Las condiciones de pago se establecerán de común acuerdo una vez definidos el alcance final y el valor de la inversión, buscando la flexibilidad y conveniencia para su negocio.</p>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">06 / 07</span>
+    </div>
+  </div></div>
+  
+  <div class="slide" data-slide="8"><div class="slide-inner internal glow-a">
+    <div class="s-header">
+      <span class="wordmark">Campuslands Full Service</span>
+      <span class="wordmark-client">Taller Automotriz Rodriguez Hermanos</span>
+    </div>
+    <div class="s-body">
+      <span class="eyebrow">07 · PRÓXIMOS PASOS</span>
+      <h2 class="s-title">Conversemos para <span class="gt">Avanzar</span></h2>
+      <p class="s-subtitle">Estamos listos para dar el siguiente paso hacia su nueva presencia digital.</p>
+      <div class="closing-grid">
+        <div class="closing-steps">
+          <div class="step-connector"></div>
+          <div class="step-item"><span class="step-number">1</span>Revisión de esta propuesta y resolución de cualquier inquietud.</div>
+          <div class="step-item"><span class="step-number">2</span>Definición de la inversión y firma del acuerdo de servicio.</div>
+          <div class="step-item"><span class="step-number">3</span>Inicio inmediato del desarrollo para cumplir con el plazo.</div>
+          <div class="step-item"><span class="step-number">4</span>Lanzamiento y puesta en marcha de su nueva vitrina digital.</div>
+        </div>
+        <div class="contact-card">
+          <h3>¡Iniciemos su Transformación Digital!</h3>
+          <p>Esperamos con entusiasmo la oportunidad de trabajar juntos en este proyecto. No dude en contactarnos para discutir cualquier detalle o ajustar la propuesta a sus necesidades.</p>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+57 315 782 4410 (Sr. Camilo Rodríguez)</span>
+          </div>
+          <div class="contact-detail">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            <span>contacto@rodriguezhermanos.co</span>
+          </div>
+          <a href="https://wa.me/573157824410" target="_blank" class="cta-button">¡Hablemos en WhatsApp!</a>
+        </div>
+      </div>
+    </div>
+    <div class="s-footer">
+      <span>Campuslands Full Service</span>
+      <span>Cotización Taller Automotriz Rodriguez Hermanos</span>
+      <span class="page-number">07 / 07</span>
+    </div>
+  </div></div>
+  
+</div></section></main>
+<footer class="slides-footer-controls">
+  <button id="btn-prev-slide" class="control-btn" onclick="navigateSlide(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></button>
+  <div class="slide-indicator"><span id="slide-number-display">1 / 7</span><div class="progress-bar-bg"><div id="slide-progress" class="progress-bar-fill"></div></div></div>
+  <button id="btn-next-slide" class="control-btn" onclick="navigateSlide(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+</footer>
+
+<script>
+const state={currentSlide:1,totalSlides:7};
+function resizeSlideStage(){const c=document.getElementById('slides-container');if(!c)return;const s=Math.min((c.clientWidth-16)/1056,(c.clientHeight-16)/594,1.35);document.documentElement.style.setProperty('--slide-scale',s.toFixed(4));}
+function updateSlideDisplay(){document.querySelectorAll('.slide').forEach(sl=>sl.classList.toggle('active',parseInt(sl.dataset.slide,10)===state.currentSlide));document.getElementById('slide-number-display').textContent=state.currentSlide+' / '+state.totalSlides;document.getElementById('slide-progress').style.width=(state.currentSlide/state.totalSlides*100)+'%';}
+function navigateSlide(d){state.currentSlide+=d;if(state.currentSlide>state.totalSlides)state.currentSlide=1;if(state.currentSlide<1)state.currentSlide=state.totalSlides;updateSlideDisplay();}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight')navigateSlide(1);if(e.key==='ArrowLeft')navigateSlide(-1);});
+window.addEventListener('resize',resizeSlideStage);
+window.addEventListener('DOMContentLoaded',()=>{resizeSlideStage();updateSlideDisplay();});
+</script>
+</body>
+</html>
